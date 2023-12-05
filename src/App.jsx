@@ -13,7 +13,7 @@ function App() {
 
 	console.log(games);
 	return (
-		<div className="w-full p-16 bg-slate-700">
+		<div className="w-full p-16 bg-zinc-900">
 			<div className="grid grid-flow-row grid-cols-2 gap-8 text-slate-100 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
 				{games &&
 					games.results.map((game) => <GameCard key={game.id} game={game} />)}

@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import {
-  SiAndroid,
-  SiIos,
-  SiLinux,
-  SiMacos,
-  SiNintendo,
-  SiPlaystation,
-  SiWindows,
-  SiXbox,
+	SiAndroid,
+	SiIos,
+	SiLinux,
+	SiApple,
+	SiNintendoswitch,
+	SiPlaystation,
+	SiWindows,
+	SiXbox,
 } from "react-icons/si";
 import { SlGlobe } from "react-icons/sl";
 
@@ -16,9 +16,9 @@ const platformIcon = {
 	xbox: SiXbox,
 	pc: SiWindows,
 	android: SiAndroid,
-	mac: SiMacos,
+	mac: SiApple,
 	linux: SiLinux,
-	nintendo: SiNintendo,
+	nintendo: SiNintendoswitch,
 	web: SlGlobe,
 	ios: SiIos,
 };
