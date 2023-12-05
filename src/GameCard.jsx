@@ -1,15 +1,26 @@
 /* eslint-disable react/prop-types */
-import { FaAndroid, FaApple, FaLinux, FaPlaystation, FaWindows, FaXbox } from "react-icons/fa";
-import { SiNintendoswitch } from "react-icons/si";
+import {
+  SiAndroid,
+  SiIos,
+  SiLinux,
+  SiMacos,
+  SiNintendo,
+  SiPlaystation,
+  SiWindows,
+  SiXbox,
+} from "react-icons/si";
+import { SlGlobe } from "react-icons/sl";
 
 const platformIcon = {
-	"PlayStation": FaPlaystation,
-	"Xbox": FaXbox,
-	"PC": FaWindows,
-	"Android": FaAndroid,
-	"Apple Macintosh": FaApple,
-  "Linux": FaLinux,
-	"Nintendo": SiNintendoswitch,
+	playstation: SiPlaystation,
+	xbox: SiXbox,
+	pc: SiWindows,
+	android: SiAndroid,
+	mac: SiMacos,
+	linux: SiLinux,
+	nintendo: SiNintendo,
+	web: SlGlobe,
+	ios: SiIos,
 };
 
 export default function GameCard({ game }) {
@@ -24,7 +35,7 @@ export default function GameCard({ game }) {
 			{game.rating}/{game.rating_top}
 			<div className="flex flex-auto">
 				{game.parent_platforms.map((platform) => {
-					const IconComponent = platformIcon[platform.platform.name];
+					const IconComponent = platformIcon[platform.platform.slug];
 					return IconComponent && <IconComponent className="mr-1" key={platform.platform.id} />;
 				})}
 			</div>
