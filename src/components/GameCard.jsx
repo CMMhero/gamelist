@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { FaStar } from "react-icons/fa";
 import {
 	SiAndroid,
 	SiApple,
@@ -11,7 +12,6 @@ import {
 } from "react-icons/si";
 import { SlGlobe } from "react-icons/sl";
 
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import {
 	Card,
@@ -47,7 +47,9 @@ export default function GameCard({ game }) {
 					<CardHeader>
 						<CardTitle>{game.name}</CardTitle>
 						<CardDescription>
-							{game.rating}/{game.rating_top}
+							<div className="flex items-center">
+							<FaStar className="mr-1" /> {game.rating}
+							</div>
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
