@@ -11,6 +11,7 @@ import {
 } from "react-icons/si";
 import { SlGlobe } from "react-icons/sl";
 
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import {
 	Card,
@@ -18,7 +19,7 @@ import {
 	CardDescription,
 	CardFooter,
 	CardHeader,
-	CardTitle
+	CardTitle,
 } from "@/components/ui/card";
 
 const platformIcon = {
@@ -36,10 +37,10 @@ const platformIcon = {
 export default function GameCard({ game }) {
 	return (
 		<>
-			<div className="w-auto" key={game.id}>
-				<Card>
+			<div className="flex" key={game.id}>
+				<Card className="border-0">
 					<img
-						className="rounded-t-lg m-0 p-0"
+						className="rounded-t-lg"
 						src={game.background_image}
 						alt={game.name}
 					/>
