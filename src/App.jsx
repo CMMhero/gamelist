@@ -14,8 +14,8 @@ function App() {
 	console.log(games);
 	return (
 		<div className="w-full p-16 bg-zinc-900">
-			<div className="grid grid-flow-row grid-cols-2 gap-8 text-slate-100 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
-				{games &&
+			<div className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 text-slate-100">	
+				{games &&	
 					games.results.map((game) => <GameCard key={game.id} game={game} />)}
 			</div>
 		</div>
