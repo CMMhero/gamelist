@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import GameCard from "./GameCard";
+import GameCard from "./components/GameCard";
 
 function App() {
 	let [games, setGames] = useState(null);
