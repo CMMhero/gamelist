@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import GameCard from "./components/GameCard";
+import { GameCardSkeleton } from "./components/GameCardSkeleton";
 
 function App() {
 	const [games, setGames] = useState([]);
@@ -77,6 +78,11 @@ function App() {
 				<div ref={loaderRef}></div>
 				{loading && (
 					<>
+						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 my-8 text-zinc-100">
+							{Array.from({ length: 20 }).map((_, index) => (
+								<GameCardSkeleton key={index} />
+							))}	
+						</div>
 						<div className="text-center mt-8 text-zinc-100">Loading</div>
 					</>
 				)}

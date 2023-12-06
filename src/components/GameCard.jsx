@@ -41,7 +41,7 @@ export default function GameCard({ game }) {
 				<Card className="cursor-pointer border-0 hover:scale-110 transition duration-500 w-full h-full">
 					<div className="">
 						<img
-							className="rounded-t-lg object-cover"
+							className="rounded-t-lg"
 							src={game.background_image}
 							alt={game.name}
 						/>
