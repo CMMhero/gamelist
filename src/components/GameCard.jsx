@@ -37,13 +37,15 @@ const platformIcon = {
 export default function GameCard({ game }) {
 	return (
 		<>
-			<div className="flex" key={game.id}>
-				<Card className="cursor-pointer border-0 hover:scale-110 transition duration-500">
-					<img
-						className="rounded-t-lg"
-						src={game.background_image}
-						alt={game.name}
-					/>
+			<div className="" key={game.id}>
+				<Card className="cursor-pointer border-0 hover:scale-110 transition duration-500 w-full h-full">
+					<div className="">
+						<img
+							className="rounded-t-lg object-cover"
+							src={game.background_image}
+							alt={game.name}
+						/>
+					</div>
 					<CardHeader>
 						<CardTitle>{game.name}</CardTitle>
 						<CardDescription>
@@ -70,7 +72,7 @@ export default function GameCard({ game }) {
 					<CardFooter>
 						<div>
 							{game.genres.map((genre) => (
-								<Badge key={genre.id} variant="default" className="mr-2">
+								<Badge key={genre.id} variant="default" className="mr-1 mb-1">
 									{genre.name}
 								</Badge>
 							))}

@@ -66,13 +66,20 @@ function App() {
 	return (
 		<div className="p-16 bg-zinc-900">
 			<div className="container">
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-slate-100">
+				<div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center">
+					<h1 className="text-4xl font-bold">H320 GameList</h1>
+				</div>
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-zinc-100">
 					{games.map((game) => (
 						<GameCard key={game.id} game={game} />
 					))}
 				</div>
 				<div ref={loaderRef}></div>
-				{loading && <p className="my-8 text-zinc-50">Loading...</p>}
+				{loading && (
+					<>
+						<div className="text-center mt-8 text-zinc-100">Loading</div>
+					</>
+				)}
 			</div>
 		</div>
 	);
