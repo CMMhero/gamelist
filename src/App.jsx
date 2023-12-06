@@ -64,7 +64,7 @@ function App() {
 	console.log(games);
 
 	return (
-		<div className="w-full p-16 bg-zinc-900">
+		<div className="p-16 bg-zinc-900">
 			<div className="container">
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-slate-100">
 					{games.map((game) => (

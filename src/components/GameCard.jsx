@@ -38,7 +38,7 @@ export default function GameCard({ game }) {
 	return (
 		<>
 			<div className="flex" key={game.id}>
-				<Card className="border-0">
+				<Card className="cursor-pointer border-0 hover:scale-110 transition duration-500">
 					<img
 						className="rounded-t-lg"
 						src={game.background_image}
@@ -48,7 +48,7 @@ export default function GameCard({ game }) {
 						<CardTitle>{game.name}</CardTitle>
 						<CardDescription>
 							<div className="flex items-center">
-							<FaStar className="mr-1" /> {game.rating}
+								<FaStar className="mr-1" /> {game.rating}
 							</div>
 						</CardDescription>
 					</CardHeader>
