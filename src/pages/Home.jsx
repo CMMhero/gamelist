@@ -58,7 +58,7 @@ export default function Home() {
 							<GameCard key={game.id} game={game} />
 						))}
 					</div>
-					<div ref={loaderRef}></div>
+					<div className="w-full" ref={loaderRef}></div>
 					{loading && (
 						<>
 							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 my-8">
@@ -66,7 +66,6 @@ export default function Home() {
 									<GameCardSkeleton key={index} />
 								))}
 							</div>
-							<div className="text-center mt-8">Loading</div>
 						</>
 					)}
 				</div>

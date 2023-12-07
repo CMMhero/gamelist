@@ -10,7 +10,7 @@ Christopher Matthew Marvelio (00000043324)
 - Game details
 
 ## Starting the server
-`git clone https://github.com/CMMhero/gamelist.git`
-`cd gamelist`
-`npm i`
-`npm run dev`
+```git clone https://github.com/CMMhero/gamelist.git```
+```cd gamelist```
+```npm i```
+```npm run dev```
