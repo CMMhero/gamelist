@@ -66,7 +66,7 @@ export default function Home() {
 									<GameCardSkeleton key={index} />
 								))}
 							</div>
-							<div className="text-center mt-8 text-zinc-100">Loading</div>
+							<div className="text-center mt-8">Loading</div>
 						</>
 					)}
 				</div>

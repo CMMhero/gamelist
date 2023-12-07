@@ -19,6 +19,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const platformIcon = {
 	playstation: SiPlaystation,
@@ -35,7 +36,7 @@ const platformIcon = {
 export default function GameCard({ game }) {
 	return (
 		<>
-			<div key={game.id}>
+			<Link key={game.id} to={`/game/${game.id}`}>
 				<Card className="cursor-pointer border-0 hover:scale-110 transition duration-500 w-full h-full">
 					<div>
 						<img
@@ -84,7 +85,7 @@ export default function GameCard({ game }) {
 						</div>
 					</CardContent>
 				</Card>
-			</div>
+			</Link>
 		</>
 	);
 }
