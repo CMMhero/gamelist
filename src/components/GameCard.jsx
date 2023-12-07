@@ -44,6 +44,8 @@ export default function GameCard({ game }) {
 							className="rounded-t-lg"
 							src={game.background_image}
 							alt={game.name}
+							decoding="async"
+							loading="lazy"
 						/>
 					</div>
 					<CardHeader>
