@@ -2,7 +2,6 @@ import GameCard from "@/components/GameCard";
 import { GameCardSkeleton } from "@/components/GameCardSkeleton";
 import NavBar from "@/components/NavBar";
 import { useEffect, useRef, useState } from "react";
-import Filter from "../components/Filter";
 
 export default function Home() {
 	const [title, setTitle] = useState("Top Games");
@@ -53,8 +52,8 @@ export default function Home() {
 					<div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center">
 						<h1 className="text-4xl font-bold">{title}</h1>
 					</div>
-					<Filter/>	
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+					{/* <Filter/>	 */}
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 my-8">
 						{games.map((game) => (
 							<GameCard key={game.id} game={game} />
 						))}
