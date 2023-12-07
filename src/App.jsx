@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { useEffect, useRef, useState } from "react";
 import GameCard from "./components/GameCard";
 import { GameCardSkeleton } from "./components/GameCardSkeleton";
+import NavBar from "./components/NavBar";
 
 function App() {
 	const [games, setGames] = useState([]);
@@ -66,13 +67,14 @@ function App() {
 	console.log(games);
 
 	return (
-		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+		<ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+			<NavBar />
 			<div className="p-16 bg-accent">
 				<div className="container">
 					<div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center">
 						<h1 className="text-4xl font-bold">H320 GameList</h1>
 					</div>
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-zinc-100">
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
 						{games.map((game) => (
 							<GameCard key={game.id} game={game} />
 						))}
@@ -80,7 +82,7 @@ function App() {
 					<div ref={loaderRef}></div>
 					{loading && (
 						<>
-							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 my-8 text-zinc-100">
+							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 my-8">
 								{Array.from({ length: 20 }).map((_, index) => (
 									<GameCardSkeleton key={index} />
 								))}
