@@ -1,8 +1,16 @@
-# React + Vite
+# H320 Gamelist
+A simple game list website built using vite, react, tailwindcss, and shadcn/ui
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Created by
+Christopher Matthew Marvelio (00000043324)
 
-Currently, two official plugins are available:
+## Features
+- Searchable game list
+- Order by and filter games
+- Game details
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Starting the server
+`git clone https://github.com/CMMhero/gamelist.git`
+`cd gamelist`
+`npm i`
+`npm run dev`

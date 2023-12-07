@@ -14,6 +14,7 @@ export default function Game() {
 				);
 				const data = await response.json();
         setGame(data);
+        console.log(data);
 			} catch (error) {
 				console.error("Error fetching game: ", error);
 			}
@@ -30,6 +31,11 @@ export default function Game() {
 					<div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center">
 						<h1 className="text-4xl font-bold">{game.name}</h1>
 					</div>
+          <img className="w-[500px]" src={game.background_image} alt={game.name} />
+          <div dangerouslySetInnerHTML={{ __html: game.description }}>
+          </div>
+					<br />
+					<br />
 					{JSON.stringify(game)};
 				</div>
 			</div>
