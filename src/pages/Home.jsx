@@ -66,7 +66,7 @@ export default function Home() {
 							))}
 						</div>
 					)}
-					<div className="w-full h-[1px]" ref={loaderRef}></div>
+					<div className="w-full h-8 mb-[-2rem]" ref={loaderRef}></div>
 					{loading && (
 						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
 							{Array.from({ length: 20 }).map((_, index) => (
