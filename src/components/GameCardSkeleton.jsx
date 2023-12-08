@@ -1,10 +1,9 @@
 import {
 	Card,
-	CardContent,
 	CardDescription,
 	CardFooter,
 	CardHeader,
-	CardTitle,
+	CardTitle
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 export function GameCardSkeleton() {
@@ -18,19 +17,17 @@ export function GameCardSkeleton() {
 						<Skeleton className="w-32 h-6" />
 					</CardTitle>
 					<CardDescription>
-						<div className="flex items-center">
-							<Skeleton className="w-5 h-5 mr-1" />
-							<Skeleton className="w-8 h-5" />
+						<div className="flex">
+							<div className="flex items-center flex-auto">
+								<Skeleton className="w-4 h-4 rounded-md mr-1" />
+								<Skeleton className="w-4 h-4 rounded-md mr-1" />
+								<Skeleton className="w-4 h-4 rounded-md" />
+							</div>
+							<Skeleton className="w-6 h-5" />
 						</div>
+						<div className="flex"></div>
 					</CardDescription>
 				</CardHeader>
-				<CardContent>
-					<div className="flex">
-						<Skeleton className="w-4 h-4 rounded-md mr-1" />
-						<Skeleton className="w-4 h-4 rounded-md mr-1" />
-						<Skeleton className="w-4 h-4 rounded-md" />
-					</div>
-				</CardContent>
 				<CardFooter>
 					<div className="flex">
 						<Skeleton className="w-12 h-5 mr-1 rounded-full" />
