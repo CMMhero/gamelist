@@ -35,7 +35,6 @@ export default function SearchBox() {
 				);
 				const data = await response.json();
 				setSearchResults(data.results || []);
-				console.log(data.results);
 			} catch (error) {
 				console.error("Error fetching data: ", error);
 			}
@@ -65,7 +64,7 @@ export default function SearchBox() {
 				</Button>
 			</div>
 
-			<CommandDialog open={open} onOpenChange={setOpen}>
+			<CommandDialog className="rounded-lg" open={open} onOpenChange={setOpen}>
 				<CommandInput
 					placeholder="Search games"
 					// value={searchQuery}

@@ -22,7 +22,6 @@ export default function Home() {
 				const data = await response.json();
 				setGames((prevGames) => [...prevGames, ...data.results]);
 				setPage((prevPage) => prevPage + 1);
-				console.log(data.results);
 			} catch (error) {
 				console.error("Error fetching games: ", error);
 			} finally {

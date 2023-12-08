@@ -46,8 +46,8 @@ export default function GameCard({ game }) {
 		<>
 			<Link key={game.id} to={`/game/${game.id}`}>
 				<Card className="cursor-pointer hover:scale-105 md:hover:scale-110 transition duration-500 w-full h-full">
-					<div className="rounded-t-lg w-full h-40 bg-secondary overflow-hidden">
-						{game.background_image && (
+					<div className="rounded-t-lg w-full h-40 bg-secondary overflow-hidden items-center justify-center flex">
+						{game.background_image ? (
 							<img
 								className="object-cover h-full w-full"
 								src={game.background_image}
@@ -55,6 +55,8 @@ export default function GameCard({ game }) {
 								decoding="async"
 								loading="lazy"
 							/>
+						) : (
+							<span>{game.name}</span>
 						)}
 					</div>
 					<CardHeader>
