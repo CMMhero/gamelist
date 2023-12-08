@@ -8,6 +8,7 @@ export default function Home() {
 	const [games, setGames] = useState([]);
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(false);
+	const [ordering, setOrdering] = useState("");
 	const loaderRef = useRef(null);
 
 	useEffect(() => {
@@ -15,7 +16,7 @@ export default function Home() {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page=${page}`
+					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page=${page}&ordering=${ordering}`
 				);
 				const data = await response.json();
 				setGames((prevGames) => [...prevGames, ...data.results]);
@@ -42,7 +43,13 @@ export default function Home() {
 		}
 
 		return () => observer.disconnect();
-	}, [page, loading]);
+	}, [page, loading, ordering]);
+
+	const handleOrderingChange = (newOrdering) => {
+		setGames([]); // Clear existing games when changing ordering
+		setPage(1); // Reset page to 1 when changing ordering
+		setOrdering(newOrdering);
+	};
 
 	return (
 		<>
@@ -52,13 +59,22 @@ export default function Home() {
 					<div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center">
 						<h1 className="text-4xl font-bold">{title}</h1>
 					</div>
-					{/* <Filter/>	 */}
+					{/* <Filter onChange={handleOrderingChange} /> */}
+					<select
+						value={ordering}
+						onChange={(e) => handleOrderingChange(e.target.value)}
+					>
+						<option value="">Default</option>
+						<option value="name">Name</option>
+						<option value="-released">Released (Descending)</option>
+						{/* Add more options for other fields */}
+					</select>
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 my-8">
 						{games.map((game) => (
 							<GameCard key={game.id} game={game} />
 						))}
 					</div>
-					<div className="w-full" ref={loaderRef}></div>
+					<div className="w-full h-8 bg-slate-700" ref={loaderRef}></div>
 					{loading && (
 						<>
 							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 my-8">

@@ -1,14 +1,19 @@
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
 } from "@/components/ui/select";
 
-export default function Filter() {
+export default function Filter({ onChange }) {
+	const handleSelectChange = (event) => {
+		console.log("Selected value:", event.target.value);
+		onChange && onChange(event.target.value);
+	};
+	
 	return (
 		<div className="mb-8 flex">
 			<Select>
