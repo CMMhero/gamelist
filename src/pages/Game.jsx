@@ -28,7 +28,7 @@ export default function Game() {
 			<NavBar />
 			<div className="p-16 bg-accent">
 				<div className="container">
-					<div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center">
+					<div className="bg-gradient-to-r to-fuchsia-500 from-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center py-2">
 						<h1 className="text-4xl font-bold">{game.name}</h1>
 					</div>
 					<img

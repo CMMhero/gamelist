@@ -6,7 +6,7 @@ export default function About() {
 			<NavBar />
 			<div className="p-16 h-screen bg-accent">
 				<div className="container">
-					<div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center">
+					<div className="bg-gradient-to-r to-fuchsia-500 from-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center  py-2">
 						<h1 className="text-4xl font-bold">About</h1>
 					</div>
 					Created by:
@@ -14,7 +14,7 @@ export default function About() {
 						<li>Christopher Matthew Marvelio (00000043324)</li>
 						<li>Dylan Heboth Rajagukguk (00000082599)</li>
 					</ul>
-					<br/>
+					<br />
 					Using:
 					<ul>
 						<li>Vite</li>

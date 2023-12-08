@@ -56,7 +56,7 @@ export default function Home() {
 			<NavBar />
 			<div className="p-16 bg-accent">
 				<div className="container">
-					<div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center">
+					<div className="bg-gradient-to-r to-fuchsia-500 from-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center py-2">
 						<h1 className="text-4xl font-bold">{title}</h1>
 					</div>
 					{/* <Filter onChange={handleOrderingChange} /> */}
@@ -74,10 +74,10 @@ export default function Home() {
 							<GameCard key={game.id} game={game} />
 						))}
 					</div>
-					<div className="w-full h-8 bg-slate-700" ref={loaderRef}></div>
+					<div className="w-full h-[1px]" ref={loaderRef}></div>
 					{loading && (
 						<>
-							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 my-8">
+							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
 								{Array.from({ length: 20 }).map((_, index) => (
 									<GameCardSkeleton key={index} />
 								))}
