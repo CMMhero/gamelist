@@ -27,7 +27,7 @@ export default function Filter({ onFilterChange }) {
 	};
 
 	return (
-		<div className="mb-8 flex">
+		<div className="flex">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}

@@ -14,7 +14,7 @@ export default function Home() {
 
 	useEffect(() => {
 		const fetchGames = async () => {
-			try {	
+			try {
 				setLoading(true);
 				const response = await fetch(
 					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page=${page}&ordering=${orderBy}`
@@ -60,20 +60,20 @@ export default function Home() {
 				<div className="px-8 md:px-16">
 					<Title text="Top Games" />
 					<Filter onFilterChange={handleFilterChange} />
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
-						{games.map((game) => (
-							<GameCard key={game.id} game={game} />
-						))}
-					</div>
+					{games && (
+						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
+							{games.map((game) => (
+								<GameCard key={game.id} game={game} />
+							))}
+						</div>
+					)}
 					<div className="w-full h-[1px]" ref={loaderRef}></div>
 					{loading && (
-						<>
-							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
-								{Array.from({ length: 20 }).map((_, index) => (
-									<GameCardSkeleton key={index} />
-								))}
-							</div>
-						</>
+						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
+							{Array.from({ length: 20 }).map((_, index) => (
+								<GameCardSkeleton key={index} />
+							))}
+						</div>
 					)}
 				</div>
 			</div>
