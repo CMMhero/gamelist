@@ -15,7 +15,7 @@ export default function About() {
 					</span>
 					<br />
 					<br />
-					<span className="text-md font-semibold">Created by</span>
+					<span className="text-md font-semibold">Group Members</span>
 					<div className="flex flex-col justify-left items-left align-left text-left md:flex-row">
 						<Profile
 							name="Christopher Matthew Marvelio"
@@ -29,7 +29,7 @@ export default function About() {
 						/>
 					</div>
 					<br />
-					<span className="text-md font-semibold">Using</span>
+					<span className="text-md font-semibold">Tools used</span>
 					<div className="flex flex-col justify-left items-left align-left text-left md:flex-row">
 						<Button variant="ghost" className="space-x-1 w-fit">
 							<SiVite />

@@ -57,7 +57,7 @@ export default function GameInfo({ game }) {
 				</div>
 				<div>
 					<p className="font-semibold text-primary">Website</p>
-					<a href={game.website} className="underline">{game.website}</a>
+					<a href={game.website} target="_blank" className="underline">{game.website}</a>
 				</div>
 			</div>
 		</>
