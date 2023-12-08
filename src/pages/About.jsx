@@ -1,5 +1,5 @@
 import NavBar from "@/components/NavBar";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { SiReact, SiTailwindcss, SiVite } from "react-icons/si";
 import { Profile } from "../components/Profile";
 import Title from "../components/Title";
