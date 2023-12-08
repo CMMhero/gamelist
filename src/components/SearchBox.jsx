@@ -31,7 +31,7 @@ export default function SearchBox() {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&search=${searchQuery}&page_size=800000`
+					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&search=${searchQuery}&page_size=5`
 				);
 				const data = await response.json();
 				setSearchResults(data.results || []);
@@ -72,17 +72,21 @@ export default function SearchBox() {
 					onChange={(e) => setSearchQuery(e.target.value)}
 				/>
 				<CommandList>
-					{searchResults.length === 0 ? (
-						<CommandEmpty>No results found.</CommandEmpty>
-					) : (
-						<CommandGroup heading="Results">
-							{searchResults.map((result) => (
-								<CommandItem key={result.id}>
-									<Link to={`/game/${result.id}`}>{result.name}</Link>
+					<CommandEmpty>No results found.</CommandEmpty>
+					<CommandGroup heading="Results">
+						{searchResults.map((result) => (
+							<Link to={`/game/${result.id}`} key={result.id}>
+								<CommandItem
+									className="cursor-pointer"
+									onPointerDown={() => {
+										setOpen(false);
+									}}
+								>
+									{result.name}
 								</CommandItem>
-							))}
-						</CommandGroup>
-					)}
+							</Link>
+						))}
+					</CommandGroup>
 				</CommandList>
 			</CommandDialog>
 		</>

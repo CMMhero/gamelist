@@ -1,35 +1,69 @@
+import { useForm } from "react-hook-form";
+
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage
+} from "@/components/ui/form";
 import {
 	Select,
 	SelectContent,
-	SelectGroup,
 	SelectItem,
-	SelectLabel,
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+export default function Filter({ onFilterChange }) {
+	const form = useForm();
 
-export default function Filter({ onChange }) {
-	const handleSelectChange = (event) => {
-		console.log("Selected value:", event.target.value);
-		onChange && onChange(event.target.value);
+	function onSubmit(data) {
+		console.log(data);
+	}
+
+	const handleValueChange = (value) => {
+		onFilterChange(value); // Pass the selected value to the callback
 	};
-	
+
 	return (
 		<div className="mb-8 flex">
-			<Select>
-				<SelectTrigger className="w-[180px]">
-					<SelectValue placeholder="Order By" />
-				</SelectTrigger>
-				<SelectContent>
-					<SelectGroup>
-						<SelectLabel>Order By</SelectLabel>
-						<SelectItem value="name">Name</SelectItem>
-						<SelectItem value="released">Date Released</SelectItem>
-						<SelectItem value="popularity">Popularity</SelectItem>
-						<SelectItem value="metacritic">Rating</SelectItem>
-					</SelectGroup>
-				</SelectContent>
-			</Select>
+			<Form {...form}>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="w-[160px]"
+				>
+					<FormField
+						control={form.control}
+						name="email"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Order by</FormLabel>
+								<Select
+									onValueChange={(value) => {
+										field.onChange(value);
+										handleValueChange(value);
+									}}
+									defaultValue="popularity"
+								>
+									<FormControl>
+										<SelectTrigger>
+											<SelectValue placeholder="Popularity" />
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent>
+										<SelectItem value="name">Name</SelectItem>
+										<SelectItem value="released">Date Released</SelectItem>
+										<SelectItem value="popularity">Popularity</SelectItem>
+										<SelectItem value="metacritic">Rating</SelectItem>
+									</SelectContent>
+								</Select>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+				</form>
+			</Form>
 		</div>
 	);
 }

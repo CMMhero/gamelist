@@ -19,6 +19,14 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 import { Link } from "react-router-dom";
 
 const platformIcon = {
@@ -56,10 +64,21 @@ export default function GameCard({ game }) {
 										const IconComponent = platformIcon[platform.platform.slug];
 										return (
 											IconComponent && (
-												<IconComponent
-													className="mr-1"
-													key={platform.platform.id}
-												/>
+												<>
+													<TooltipProvider>
+														<Tooltip>
+															<TooltipTrigger>
+																<IconComponent
+																	className="mr-1"
+																	key={platform.platform.id}
+																/>
+															</TooltipTrigger>
+															<TooltipContent>
+																<p>{platform.platform.name}</p>
+															</TooltipContent>
+														</Tooltip>
+													</TooltipProvider>
+												</>
 											)
 										);
 									})}
