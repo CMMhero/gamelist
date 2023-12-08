@@ -1,6 +1,7 @@
 import NavBar from "@/components/NavBar";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import GameInfo from "../components/GameInfo";
 import Title from "../components/Title";
 
 export default function Game() {
@@ -27,48 +28,23 @@ export default function Game() {
 	return (
 		<>
 			<NavBar />
+			<div className="">
+				<img
+					className="w-full h-screen object-cover absolute z-[-1] opacity-10"
+					src={game.background_image}
+					alt={game.name}
+				/>
+			</div>
 			<div className="sm:container py-8 md:py-16">
 				<div className="px-8 md:px-16">
 					<Title text={game.name} />
-					<img
-						className="w-[500px]"
-						src={game.background_image}
-						alt={game.name}
-					/>
-					<div dangerouslySetInnerHTML={{ __html: game.description }} />
-					<p>
-						Metacritic: {game.metacritic} {game.metacritic_url}
-					</p>
-					<p>Date Released: {game.released}</p>
-					<p>Developer</p>
-					{game.developers &&
-						game.developers.map((developer) => (
-							<span key={developer.id}>{developer.name}, </span>
-						))}
-					<p>Genre</p>
-					{game.genres &&
-						game.genres.map((genre) => (
-							<span key={genre.id}>{genre.name}, </span>
-						))}
-					<p>Platform</p>
-					{game.platforms &&
-						game.platforms.map((platform) => (
-							<span key={platform.platform.id}>{platform.platform.name}, </span>
-						))}
-					<p>Publisher</p>
-					{game.publishers &&
-						game.publishers.map((publisher) => (
-							<span key={publisher.id}>{publisher.name}, </span>
-						))}
-					<p>Available in</p>
-					{game.stores &&
-						game.stores.map((store) => (
-							<span key={store.store.id}>{store.store.name}, </span>
-						))}
-					<p>Tags</p>
-					{game.tags &&
-						game.tags.map((tag) => <span key={tag.id}>{tag.name}, </span>)}
-					<p>{game.website}</p>
+					<div className="text-sm">
+						<div
+							dangerouslySetInnerHTML={{ __html: game.description }}
+							className="space-y-4 my-8"
+						/>
+						<GameInfo game={game} />
+					</div>
 				</div>
 			</div>
 		</>

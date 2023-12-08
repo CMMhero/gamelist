@@ -10,8 +10,13 @@ export default function About() {
 			<div className="sm:container py-8 md:py-16">
 				<div className="px-8 md:px-16">
 					<Title text="About" />
-					<span className="text-md font-semibold">Created by:</span>
-					<div>
+					<span className="text-md font-semibold">
+						A simple game list website.
+					</span>
+					<br />
+					<br />
+					<span className="text-md font-semibold">Created by</span>
+					<div className="flex flex-col justify-left items-left align-left text-left md:flex-row">
 						<Profile
 							name="Christopher Matthew Marvelio"
 							nim="00000043324"
@@ -24,21 +29,21 @@ export default function About() {
 						/>
 					</div>
 					<br />
-					<span className="text-md font-semibold">Using:</span>
-					<div className="space-x-2">
-						<Button variant="ghost" className="space-x-1">
+					<span className="text-md font-semibold">Using</span>
+					<div className="flex flex-col justify-left items-left align-left text-left md:flex-row">
+						<Button variant="ghost" className="space-x-1 w-fit">
 							<SiVite />
 							<span>Vite</span>
 						</Button>
-						<Button variant="ghost" className="space-x-1">
+						<Button variant="ghost" className="space-x-1 w-fit">
 							<SiReact />
 							<span>React</span>
 						</Button>
-						<Button variant="ghost" className="space-x-1">
+						<Button variant="ghost" className="space-x-1 w-fit">
 							<SiTailwindcss />
 							<span>Tailwindcss</span>
 						</Button>
-						<Button variant="ghost" className="space-x-1">
+						<Button variant="ghost" className="space-x-1 w-fit">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 256 256"
