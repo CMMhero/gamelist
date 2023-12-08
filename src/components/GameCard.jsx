@@ -37,7 +37,7 @@ export default function GameCard({ game }) {
 	return (
 		<>
 			<Link key={game.id} to={`/game/${game.id}`}>
-				<Card className="cursor-pointer border-0 hover:scale-110 transition duration-500 w-full h-full">
+				<Card className="cursor-pointer hover:scale-110 transition duration-500 w-full h-full">
 					<div>
 						<img
 							className="rounded-t-lg"

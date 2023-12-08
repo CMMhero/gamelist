@@ -21,6 +21,7 @@ export default function Home() {
 				const data = await response.json();
 				setGames((prevGames) => [...prevGames, ...data.results]);
 				setPage((prevPage) => prevPage + 1);
+				console.log(data.results);
 			} catch (error) {
 				console.error("Error fetching games: ", error);
 			} finally {
@@ -54,8 +55,8 @@ export default function Home() {
 	return (
 		<>
 			<NavBar />
-			<div className="p-16 bg-accent">
-				<div className="container">
+			<div className="sm:container">
+				<div className="px-8 md:px-16">
 					<div className="bg-gradient-to-r to-fuchsia-500 from-cyan-500 bg-clip-text text-transparent my-8 w-fit self-center py-2">
 						<h1 className="text-4xl font-bold">{title}</h1>
 					</div>
@@ -69,7 +70,7 @@ export default function Home() {
 						<option value="-released">Released (Descending)</option>
 						{/* Add more options for other fields */}
 					</select>
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 my-8">
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
 						{games.map((game) => (
 							<GameCard key={game.id} game={game} />
 						))}
@@ -77,7 +78,7 @@ export default function Home() {
 					<div className="w-full h-[1px]" ref={loaderRef}></div>
 					{loading && (
 						<>
-							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 								{Array.from({ length: 20 }).map((_, index) => (
 									<GameCardSkeleton key={index} />
 								))}
