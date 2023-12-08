@@ -55,7 +55,7 @@ export default function Filter({ onFilterChange }) {
 										<SelectItem value="name">Name</SelectItem>
 										<SelectItem value="released">Date Released</SelectItem>
 										<SelectItem value="popularity">Popularity</SelectItem>
-										<SelectItem value="metacritic">Rating</SelectItem>
+										<SelectItem value="-metacritic">Rating</SelectItem>
 									</SelectContent>
 								</Select>
 								<FormMessage />
