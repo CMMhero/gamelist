@@ -10,7 +10,7 @@ export function GameCardSkeleton() {
 	return (
 		<>
 			<Card className="cursor-pointer border-0 hover:scale-110 transition duration-500 w-full h-full">
-				<Skeleton className="w-100 h-32 rounded-b-none rounded-t-lg" />
+				<Skeleton className="w-100 h-40 rounded-b-none rounded-t-lg" />
 				<CardHeader>
 					<CardTitle>
 						<Skeleton className="w-full h-6 mb-1" />

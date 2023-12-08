@@ -46,14 +46,16 @@ export default function GameCard({ game }) {
 		<>
 			<Link key={game.id} to={`/game/${game.id}`}>
 				<Card className="cursor-pointer hover:scale-105 md:hover:scale-110 transition duration-500 w-full h-full">
-					<div>
-						<img
-							className="rounded-t-lg"
-							src={game.background_image}
-							alt={game.name}
-							decoding="async"
-							loading="lazy"
-						/>
+					<div className="rounded-t-lg w-full h-40 bg-secondary overflow-hidden">
+						{game.background_image && (
+							<img
+								className="object-cover h-full w-full"
+								src={game.background_image}
+								alt={game.name}
+								decoding="async"
+								loading="lazy"
+							/>
+						)}
 					</div>
 					<CardHeader>
 						<CardTitle>{game.name}</CardTitle>
@@ -83,7 +85,23 @@ export default function GameCard({ game }) {
 										);
 									})}
 									{game.parent_platforms.length > 5 && (
-										<span>+{game.parent_platforms.length - 5}</span>
+										<>
+											<TooltipProvider>
+												<Tooltip>
+													<TooltipTrigger>
+														<span>+{game.parent_platforms.length - 5}</span>
+													</TooltipTrigger>
+													<TooltipContent>
+														<p>
+															{game.parent_platforms
+																.slice(5)
+																.map((platform) => platform.platform.name)
+																.join(", ")}
+														</p>
+													</TooltipContent>
+												</Tooltip>
+											</TooltipProvider>
+										</>
 									)}
 								</div>
 								{game.metacritic && (

@@ -1,5 +1,7 @@
 import NavBar from "@/components/NavBar";
+import { Button } from "@/components/ui/Button";
 import { SiReact, SiTailwindcss, SiVite } from "react-icons/si";
+import { Profile } from "../components/Profile";
 import Title from "../components/Title";
 export default function About() {
 	return (
@@ -8,27 +10,35 @@ export default function About() {
 			<div className="sm:container py-8 md:py-16">
 				<div className="px-8 md:px-16">
 					<Title text="About" />
-					Created by:
-					<ul>
-						<li>Christopher Matthew Marvelio (00000043324)</li>
-						<li>Dylan Heboth Rajagukguk (00000082599)</li>
-					</ul>
+					<span className="text-md font-semibold">Created by:</span>
+					<div>
+						<Profile
+							name="Christopher Matthew Marvelio"
+							nim="00000043324"
+							username="cmmhero"
+						/>
+						<Profile
+							name="Dylan Heboth Rajagukguk"
+							nim="00000082599"
+							username="DillJest"
+						/>
+					</div>
 					<br />
-					Using:
-					<ul>
-						<li>
+					<span className="text-md font-semibold">Using:</span>
+					<div className="space-x-2">
+						<Button variant="ghost" className="space-x-1">
 							<SiVite />
-							Vite
-						</li>
-						<li>
+							<span>Vite</span>
+						</Button>
+						<Button variant="ghost" className="space-x-1">
 							<SiReact />
-							React
-						</li>
-						<li>
+							<span>React</span>
+						</Button>
+						<Button variant="ghost" className="space-x-1">
 							<SiTailwindcss />
-							Tailwindcss
-						</li>
-						<li>
+							<span>Tailwindcss</span>
+						</Button>
+						<Button variant="ghost" className="space-x-1">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 256 256"
@@ -58,9 +68,9 @@ export default function About() {
 									strokeWidth="16"
 								></line>
 							</svg>
-							shadcn/ui
-						</li>
-					</ul>
+							<span>shadcn/ui</span>
+						</Button>
+					</div>
 				</div>
 			</div>
 		</>
