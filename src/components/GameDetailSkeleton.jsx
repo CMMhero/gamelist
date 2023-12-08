@@ -13,7 +13,7 @@ export default function GameDetailSkeleton() {
 				<Skeleton className="h-4 w-full" />
 				<Skeleton className="h-4 w-full" />
 			</div>
-			<div className="grid grid-cols-2 gap-4 my-8">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
 				<div className="space-y-1">
 					<Skeleton className="h-4 w-24" />
 					<Skeleton className="h-4 w-20" />
@@ -46,6 +46,13 @@ export default function GameDetailSkeleton() {
 					<Skeleton className="h-4 w-20" />
 					<Skeleton className="h-4 w-48" />
 				</div>
+			</div>
+			<Skeleton className="h-8 w-40" />
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-4">
+				<Skeleton className="h-40 w-full" />
+				<Skeleton className="h-40 w-full" />
+				<Skeleton className="h-40 w-full" />
+				<Skeleton className="h-40 w-full" />
 			</div>
 		</>
 	);

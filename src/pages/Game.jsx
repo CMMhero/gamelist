@@ -102,7 +102,7 @@ export default function Game() {
 													<AlertDialogHeader>
 														<AlertDialogTitle>
 															<div className="flex flex-auto justify-between">
-																{game.name} Screenshot
+																Screenshot
 																<AlertDialogCancel>
 																	<AiOutlineClose />
 																</AlertDialogCancel>
