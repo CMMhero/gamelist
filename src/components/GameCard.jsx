@@ -45,11 +45,11 @@ export default function GameCard({ game }) {
 	return (
 		<>
 			<Link key={game.id} to={`/game/${game.id}`}>
-				<Card className="cursor-pointer hover:scale-105 md:hover:scale-110 transition duration-500 w-full h-full">
-					<div className="rounded-t-lg w-full h-40 bg-secondary overflow-hidden items-center justify-center flex">
+				<Card className="w-full h-full transition duration-500 cursor-pointer hover:scale-105 md:hover:scale-110">
+					<div className="flex items-center justify-center w-full h-40 overflow-hidden text-center rounded-t-lg bg-secondary">
 						{game.background_image ? (
 							<img
-								className="object-cover h-full w-full"
+								className="object-cover w-full h-full"
 								src={game.background_image}
 								alt={game.name}
 								decoding="async"
@@ -117,7 +117,7 @@ export default function GameCard({ game }) {
 					<CardContent>
 						<div>
 							{game.genres.map((genre) => (
-								<Badge key={genre.id} variant="default" className="mr-1 mb-1">
+								<Badge key={genre.id} variant="default" className="mb-1 mr-1">
 									{genre.name}
 								</Badge>
 							))}

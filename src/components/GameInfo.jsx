@@ -1,17 +1,22 @@
-const ListItem = ({ title, items }) => (
-	<div>
-		<p className="font-semibold text-primary">{title}</p>
-		{items && items.map((item) => <span key={item.id}>{item.name}, </span>)}
-	</div>
-);
+function formatDate(dateString) {
+	const date = new Date(dateString);
+
+	if (isNaN(date.getTime())) {
+		return "Invalid Date";
+	}
+
+	const options = { year: "numeric", month: "long", day: "numeric" };
+
+	return date.toLocaleDateString("en-US", options);
+}
 
 export default function GameInfo({ game }) {
 	return (
 		<>
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+			<div className="grid grid-cols-1 gap-4 my-8 md:grid-cols-2">
 				<div>
 					<p className="font-semibold text-primary">Date Released</p>
-					<span>{game.released ? game.released : "TBA"}</span>
+					<span>{game.released ? formatDate(game.released) : "TBA"}</span>
 				</div>
 				<div>
 					<p className="font-semibold text-primary">Developer</p>
@@ -65,9 +70,13 @@ export default function GameInfo({ game }) {
 				</div>
 				<div>
 					<p className="font-semibold text-primary">Website</p>
-					<a href={game.website} target="_blank" className="underline">
-						{game.website ? game.website : "-"}
-					</a>
+					{game.website ? (
+						<a href={game.website} target="_blank" className="underline">
+							{game.website}
+						</a>
+					) : (
+						"-"
+					)}
 				</div>
 			</div>
 		</>
