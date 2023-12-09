@@ -20,6 +20,7 @@ export default function Game() {
 	const [game, setGame] = useState(null); // Initialize as null
 	const [screenshots, setScreenshots] = useState(null); // Initialize as null
 	const [trailers, setTrailers] = useState(null); // Initialize as null
+	const [stores, setStores] = useState(null); // Initialize as null
 
 	useEffect(() => {
 		const fetchGame = async () => {
@@ -54,15 +55,29 @@ export default function Game() {
 				);
 				const data = await response.json();
 				setTrailers(data.results);
+				// console.log(data.results);
+			} catch (error) {
+				console.error("Error fetching trailers: ", error);
+			}
+		};
+
+		const fetchStores = async () => {
+			try {
+				const response = await fetch(
+					`https://api.rawg.io/api/games/${params.id}/stores?key=dc6f3f19206d43078b51b87ab10705b1`
+				);
+				const data = await response.json();
+				setStores(data.results);
 				console.log(data.results);
 			} catch (error) {
-				console.error("Error fetching screenshots: ", error);
+				console.error("Error fetching stores: ", error);
 			}
 		};
 
 		fetchGame();
 		fetchScreenshots();
 		fetchTrailers();
+		fetchStores();
 	}, [params.id]);
 
 	return (
@@ -78,26 +93,27 @@ export default function Game() {
 			<div className="w-full h-screen bg-gradient-to-b from-transparent from-5% via-background/90 via-20% to-background">
 				<div className="py-8 sm:container md:py-16">
 					<div className="px-8 md:px-16">
-						{game && screenshots && trailers ? (
+						{game && screenshots && trailers && stores ? (
 							<>
 								<Title text={game.name} />
-								<div className="grid grid-cols-9 gap-8 text-sm">
-									<div className="col-span-9 gap-8 my-8 space-y-4 md:col-span-6">
+								<div className="grid grid-cols-9 text-sm gap-x-8">
+									<div className="col-span-9 space-y-4 md:col-span-6">
 										<span className="text-2xl font-bold text-primary">
 											About
 										</span>
 										<div
+											className="space-y-4"
 											dangerouslySetInnerHTML={{ __html: game.description }}
 										></div>
-										<GameInfo game={game} />
+										<GameInfo game={game} stores={stores} />
 									</div>
-									<div className="col-span-9 gap-x-8 md:col-span-3">
-										{screenshots && (
+									<div className="col-span-9 md:col-span-3">
+										{screenshots.length > 0 && (
 											<div className="my-8">
 												<span className="text-2xl font-bold text-primary">
 													Screenshots
 												</span>
-												<div className="grid grid-cols-1 gap-4 my-4 md:grid-cols-2">
+												<div className="grid grid-cols-1 gap-4 my-4 lg:grid-cols-2">
 													{screenshots.map((screenshot) => (
 														<>
 															<AlertDialog>
@@ -105,7 +121,7 @@ export default function Game() {
 																	<img
 																		src={screenshot.image}
 																		key={screenshot.id}
-																		className="w-full h-auto rounded-md"
+																		className="object-cover w-full h-full rounded-md"
 																		alt={`Screenshot ${screenshot.id}`}
 																		decoding="async"
 																		loading="lazy"
@@ -139,12 +155,12 @@ export default function Game() {
 												</div>
 											</div>
 										)}
-										{trailers && (
+										{trailers.length > 0 && (
 											<div className="my-8">
 												<span className="text-2xl font-bold text-primary">
 													Trailers
 												</span>
-												<div className="grid grid-cols-1 gap-4 my-4 md:grid-cols-2">
+												<div className="grid grid-cols-1 gap-4 my-4 lg:grid-cols-2">
 													{trailers.map((trailer) => (
 														<>
 															<Link

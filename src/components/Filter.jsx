@@ -27,7 +27,7 @@ export default function Filter({ onFilterChange }) {
 	};
 
 	return (
-		<div className="sticky flex top-14">
+		<div className="flex">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function formatDate(dateString) {
 	const date = new Date(dateString);
 
@@ -10,10 +12,10 @@ function formatDate(dateString) {
 	return date.toLocaleDateString("en-US", options);
 }
 
-export default function GameInfo({ game }) {
+export default function GameInfo({ game, stores }) {
 	return (
 		<>
-			<div className="grid grid-cols-1 gap-4 my-8 md:grid-cols-2">
+			<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 				<div>
 					<p className="font-semibold text-primary">Date Released</p>
 					<span>{game.released ? formatDate(game.released) : "TBA"}</span>
@@ -53,14 +55,16 @@ export default function GameInfo({ game }) {
 					</span>
 				</div>
 				<div>
-					<p className="font-semibold text-primary">Available in</p>
-					<span>
-						{game.stores.length
-							? game.stores.map((store) => store.store.name).join(", ")
-							: "-"}
-					</span>
+					<p className="font-semibold text-primary">Website</p>
+					{game.website ? (
+						<Link to={game.website} target="_blank" className="underline">
+							{game.website}
+						</Link>
+					) : (
+						"-"
+					)}
 				</div>
-				<div>
+				<div className="md:col-span-2">
 					<p className="font-semibold text-primary">Tags</p>
 					<span>
 						{game.tags.length
@@ -68,15 +72,22 @@ export default function GameInfo({ game }) {
 							: "-"}
 					</span>
 				</div>
-				<div>
-					<p className="font-semibold text-primary">Website</p>
-					{game.website ? (
-						<a href={game.website} target="_blank" className="underline">
-							{game.website}
-						</a>
-					) : (
-						"-"
-					)}
+				<div className="md:col-span-2">
+					<p className="font-semibold text-primary">Available in</p>
+					<span>
+						{game.stores.length
+							? game.stores.map((store, index) => (
+									<Link
+										to={stores[index].url}
+										key={store.store.id}
+										target="_blank"
+									>
+										<span className="underline">{store.store.name}</span>
+										{index < game.stores.length - 1 && ", "}
+									</Link>
+							  ))
+							: "-"}
+					</span>
 				</div>
 			</div>
 		</>
