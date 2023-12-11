@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/tooltip";
 
 import { Link } from "react-router-dom";
+import Image from "./Image";
 
 const platformIcon = {
 	playstation: SiPlaystation,
@@ -48,12 +49,10 @@ export default function GameCard({ game }) {
 				<Card className="w-full h-full transition duration-500 cursor-pointer hover:scale-105 md:hover:scale-110">
 					<div className="flex items-center justify-center w-full h-40 overflow-hidden text-center rounded-t-lg bg-primary">
 						{game.background_image ? (
-							<img
-								className="object-cover w-full h-full"
+							<Image
+								className="w-full h-full object-cover"
 								src={game.background_image}
 								alt={game.name}
-								decoding="async"
-								loading="lazy"
 							/>
 						) : (
 							<span className="text-primary-foreground">{game.name}</span>

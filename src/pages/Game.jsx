@@ -13,6 +13,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import GameDetailSkeleton from "../components/GameDetailSkeleton";
 import GameInfo from "../components/GameInfo";
+import Image from "../components/Image";
 import Title from "../components/Title";
 
 export default function Game() {
@@ -84,7 +85,7 @@ export default function Game() {
 		<>
 			<NavBar />
 			{game && game.background_image ? (
-					<img
+					<Image
 						className="w-full h-screen object-cover absolute z-[-1] opacity-20"
 						src={game.background_image}
 						alt={game.name}
@@ -121,13 +122,11 @@ export default function Game() {
 														<>
 															<AlertDialog>
 																<AlertDialogTrigger>
-																	<img
+																	<Image
 																		src={screenshot.image}
 																		key={screenshot.id}
 																		className="object-cover w-full h-full rounded-md"
 																		alt={`Screenshot ${screenshot.id}`}
-																		decoding="async"
-																		loading="lazy"
 																	/>
 																</AlertDialogTrigger>
 																<AlertDialogContent className="rounded-lg w-[95%] sm:w-[75%] md:w-[60%] lg:w-[50%]">
@@ -141,13 +140,11 @@ export default function Game() {
 																			</div>
 																		</AlertDialogTitle>
 																		<AlertDialogDescription>
-																			<img
+																			<Image
 																				src={screenshot.image}
 																				key={screenshot.id}
 																				className="w-full h-auto rounded-md"
 																				alt={`Screenshot ${screenshot.id}`}
-																				decoding="async"
-																				loading="lazy"
 																			/>
 																		</AlertDialogDescription>
 																	</AlertDialogHeader>
@@ -172,12 +169,10 @@ export default function Game() {
 																target="_blank"
 																rel="noopener noreferrer"
 															>
-																<img
+																<Image
 																	className="rounded-md"
 																	src={trailer.preview}
 																	alt={trailer.name}
-																	decoding="async"
-																	loading="lazy"
 																/>
 															</Link>
 														</>
