@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export function GameCardSkeleton() {
 	return (
 		<>
-			<Card className="cursor-pointer border-0 hover:scale-110 transition duration-500 w-full h-full">
+			<Card className="w-full h-full transition duration-500 cursor-pointer hover:scale-105 md:hover:scale-110">
 				<Skeleton className="w-100 h-40 rounded-b-none rounded-t-lg" />
 				<CardHeader>
 					<CardTitle>
