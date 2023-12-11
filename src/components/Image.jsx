@@ -7,7 +7,7 @@ export default function Image({ src, alt, className }) {
 
 	return (
 		<>
-			<LazyLoad className={`${className}`}>
+			<LazyLoad className='w-full h-full'>
 				<>
 					<Skeleton
 						className={`${className} ${isLoaded ? "hidden" : "block"}`}
