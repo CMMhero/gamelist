@@ -83,12 +83,15 @@ export default function Game() {
 	return (
 		<>
 			<NavBar />
-			{game && (
-				<img
-					className="w-full h-screen object-cover absolute z-[-1] opacity-20"
-					src={game.background_image}
-					alt={game.name}
-				/>
+			{game && game.background_image ? (
+					<img
+						className="w-full h-screen object-cover absolute z-[-1] opacity-20"
+						src={game.background_image}
+						alt={game.name}
+					/>
+				// <div className="w-full h-screen object-cover absolute z-[-1] opacity-20" />
+			) : (	
+				<div className="w-full h-screen object-cover absolute z-[-1] opacity-20 bg-primary" />
 			)}
 			<div className="w-full h-screen bg-gradient-to-b from-transparent from-5% via-background/90 via-20% to-background">
 				<div className="py-8 sm:container md:py-16">
