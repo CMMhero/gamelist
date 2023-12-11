@@ -69,7 +69,7 @@ export default function Game() {
 				);
 				const data = await response.json();
 				setStores(data.results);
-				console.log(data.results);
+				// console.log(data.results);
 			} catch (error) {
 				console.error("Error fetching stores: ", error);
 			}
@@ -85,13 +85,13 @@ export default function Game() {
 		<>
 			<NavBar />
 			{game && game.background_image ? (
-					<Image
-						className="w-full h-screen object-cover absolute z-[-1] opacity-25"
-						src={game.background_image}
-						alt={game.name}
-					/>
+				<Image
+					className="w-full h-screen object-cover absolute z-[-1] opacity-25"
+					src={game.background_image}
+					alt={game.name}
+				/>
+			) : (
 				// <div className="w-full h-screen object-cover absolute z-[-1] opacity-20" />
-			) : (	
 				<div className="w-full h-screen object-cover absolute z-[-1] opacity-25 bg-primary" />
 			)}
 			<div className="w-full h-screen bg-gradient-to-b from-transparent from-5% via-background/80 via-20% to-background">
@@ -122,12 +122,14 @@ export default function Game() {
 														<>
 															<AlertDialog>
 																<AlertDialogTrigger>
-																	<Image
-																		src={screenshot.image}
-																		key={screenshot.id}
-																		className="object-cover w-full h-full rounded-md"
-																		alt={`Screenshot ${screenshot.id}`}
-																	/>
+																	<div className="w-full h-full md:h-28">
+																		<Image
+																			src={screenshot.image}
+																			key={screenshot.id}
+																			className="object-cover w-full h-full rounded-md"
+																			alt={`Screenshot ${screenshot.id}`}
+																		/>
+																	</div>
 																</AlertDialogTrigger>
 																<AlertDialogContent className="rounded-lg w-[95%] sm:w-[75%] md:w-[60%] lg:w-[50%]">
 																	<AlertDialogHeader>
