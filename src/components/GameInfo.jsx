@@ -78,7 +78,7 @@ export default function GameInfo({ game, stores }) {
 						{game.stores.length
 							? game.stores.map((store, index) => (
 									<Link
-										to={stores[index].url}
+										// to={stores[index].url}
 										key={store.store.id}
 										target="_blank"
 									>

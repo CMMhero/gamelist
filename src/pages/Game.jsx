@@ -91,7 +91,6 @@ export default function Game() {
 					alt={game.name}
 				/>
 			) : (
-				// <div className="w-full h-screen object-cover absolute z-[-1] opacity-20" />
 				<div className="w-full h-screen object-cover absolute z-[-1] opacity-25 bg-primary" />
 			)}
 			<div className="w-full h-screen bg-gradient-to-b from-transparent from-5% via-background/80 via-20% to-background">
@@ -102,14 +101,16 @@ export default function Game() {
 								<Title text={game.name} />
 								<div className="grid grid-cols-9 text-sm gap-x-8">
 									<div className="col-span-9 space-y-4 md:col-span-6">
-										<span className="text-2xl font-bold text-primary">
-											About
-										</span>
-										<div
-											className="space-y-4"
-											dangerouslySetInnerHTML={{ __html: game.description }}
-										></div>
-										<GameInfo game={game} stores={stores} />
+										<div className="my-8">
+											<span className="text-2xl font-bold text-primary">
+												About
+											</span>
+											<div
+												className="space-y-4"
+												dangerouslySetInnerHTML={{ __html: game.description }}
+											></div>
+											<GameInfo game={game} stores={stores} />
+										</div>
 									</div>
 									<div className="col-span-9 md:col-span-3">
 										{screenshots.length > 0 && (
