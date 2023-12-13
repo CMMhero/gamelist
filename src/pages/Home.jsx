@@ -10,7 +10,9 @@ export default function Home() {
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(false);
 	const [orderBy, setOrderBy] = useState("popularity");
-	const [viewType, setViewType] = useState("grid");
+	const [viewType, setViewType] = useState(
+		localStorage.getItem("view") || "grid"
+	);
 	const loaderRef = useRef(null);
 
 	useEffect(() => {
@@ -55,7 +57,7 @@ export default function Home() {
 
 	const handleViewChange = (type) => {
 		if (!type) return;
-			setViewType(type);
+		setViewType(type);
 	};
 
 	return (

@@ -31,13 +31,17 @@ export default function Filter({ onFilterChange, onViewChange }) {
 	};
 
 	const handleViewChange = (value) => {
+		localStorage.setItem("view", value);
 		onViewChange(value); // Pass the selected value to the callback
 	};
 
 	return (
 		<div className="flex">
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="gap-4 flex w-full justify-between">
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="gap-4 flex w-full justify-between"
+				>
 					<div className="w-[160px]">
 						<FormField
 							control={form.control}
@@ -79,17 +83,37 @@ export default function Filter({ onFilterChange, onViewChange }) {
 									<ToggleGroup
 										type="single"
 										onValueChange={(value) => {
+											if (value == "") return;
 											field.onChange(value);
 											handleViewChange(value);
 										}}
+										defaultValue={localStorage.getItem("view") || "grid"}
 									>
-										<ToggleGroupItem value="grid" aria-label="Grid view">
+										<ToggleGroupItem
+											value="grid"
+											aria-label="Grid view"
+											className={`${
+												field.value == "grid" ? "bg-accent" : "bg-transparent"
+											}`}
+										>
 											<Grid3X3 />
 										</ToggleGroupItem>
-										<ToggleGroupItem value="cards" aria-label="Cards view">
+										<ToggleGroupItem
+											value="cards"
+											aria-label="Cards view"
+											className={`${
+												field.value == "cards" ? "bg-accent" : "bg-transparent"
+											}`}
+										>
 											<Grid2X2 />
 										</ToggleGroupItem>
-										<ToggleGroupItem value="list" aria-label="List view">
+										<ToggleGroupItem
+											value="list"
+											aria-label="List view"
+											className={`${
+												field.value == "list" ? "bg-accent" : "bg-transparent"
+											}`}
+										>
 											<TableProperties />
 										</ToggleGroupItem>
 									</ToggleGroup>
