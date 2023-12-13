@@ -85,7 +85,7 @@ export default function Home() {
 							))}
 						</div>
 					)}
-					<div className="w-full h-[50vh] bg-primary" ref={loaderRef}>
+					<div className="w-full h-16 bg-primary" ref={loaderRef}>
 						{loading && (
 							<div
 								className={`grid ${
