@@ -48,7 +48,7 @@ export default function GameCard({ game, view }) {
 			return (
 				<>
 					<Link key={game.id} to={`/game/${game.id}`}>
-						<Card className="flex items-center justify-center aspect-[1/1.5] text-center bg-primary overflow-hidden mb-1">
+						<Card className="aspect-[1/1.5] overflow-hidden mb-1">
 							{game.background_image ? (
 								<Image
 									className="w-full h-full object-cover"
@@ -56,10 +56,14 @@ export default function GameCard({ game, view }) {
 									alt={game.name}
 								/>
 							) : (
-								<span className="text-primary-foreground">{game.name}</span>
+								<div className="bg-primary w-full h-full items-center justify-center flex">
+									<span className="text-primary-foreground">{game.name}</span>
+								</div>
 							)}
 						</Card>
-						<span className="font-semibold text-xs sm:text-sm md:text-md">{game.name}</span>
+						<span className="font-semibold text-xs sm:text-sm md:text-md">
+							{game.name}
+						</span>
 					</Link>
 				</>
 			);
@@ -69,7 +73,7 @@ export default function GameCard({ game, view }) {
 				<>
 					<Link key={game.id} to={`/game/${game.id}`}>
 						<Card className="w-full h-full cursor-pointer overflow-hidden">
-							<div className="flex items-center aspect-video justify-center overflow-hidden text-center bg-primary">
+							<div className="aspect-video overflow-hidden">
 								{game.background_image ? (
 									<Image
 										className="w-full h-full object-cover"
@@ -77,7 +81,9 @@ export default function GameCard({ game, view }) {
 										alt={game.name}
 									/>
 								) : (
-									<span className="text-primary-foreground">{game.name}</span>
+									<div className="bg-primary w-full h-full items-center justify-center flex">
+										<span className="text-primary-foreground">{game.name}</span>
+									</div>
 								)}
 							</div>
 							<CardHeader>
@@ -179,18 +185,12 @@ export default function GameCard({ game, view }) {
 											<div className="flex flex-col md:flex-row gap-2">
 												<div className="space-y-1 space-x-1">
 													{game.genres.slice(0, 3).map((genre) => (
-														<Badge
-															key={genre.id}
-															variant="default"
-														>
+														<Badge key={genre.id} variant="default">
 															{genre.name}
 														</Badge>
 													))}
 													{game.genres.length > 3 && (
-														<Badge
-															key="moreGenres"
-															variant="default"
-														>
+														<Badge key="moreGenres" variant="default">
 															+{game.genres.length - 3}
 														</Badge>
 													)}
