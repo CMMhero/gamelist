@@ -27,6 +27,12 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "@/components/ui/hover-card";
+
 import { Link } from "react-router-dom";
 import Image from "./Image";
 
@@ -47,24 +53,100 @@ export default function GameCard({ game, view }) {
 		case "grid":
 			return (
 				<>
-					<Link key={game.id} to={`/game/${game.id}`}>
-						<Card className="aspect-[1.5/1] overflow-hidden mb-1">
-							{game.background_image ? (
-								<Image
-									className="w-full h-full object-cover"
-									src={game.background_image}
-									alt={game.name}
-								/>
-							) : (
-								<div className="bg-primary w-full h-full items-center justify-center flex">
-									<span className="text-primary-foreground">{game.name}</span>
+					<HoverCard>
+						<HoverCardTrigger>
+							<Link key={game.id} to={`/game/${game.id}`}>
+								<Card className="aspect-[1.5/1] overflow-hidden mb-1">
+									{game.background_image ? (
+										<Image
+											className="w-full h-full object-cover"
+											src={game.background_image}
+											alt={game.name}
+										/>
+									) : (
+										<div className="bg-primary w-full h-full items-center justify-center flex">
+											<span className="text-primary-foreground">
+												{game.name}
+											</span>
+										</div>
+									)}
+								</Card>
+								<span className="font-semibold text-xs sm:text-sm md:text-md">
+									{game.name}
+								</span>
+							</Link>
+						</HoverCardTrigger>
+						<HoverCardContent>
+							<div className="flex flex-col gap-1">
+							<span className="font-semibold text-xs sm:text-sm md:text-md">
+								{game.name}
+							</span>
+								<div className="flex">
+									<div className="flex items-center flex-auto">
+										{game.parent_platforms.slice(0, 5).map((platform) => {
+											const IconComponent =
+												platformIcon[platform.platform.slug];
+											return (
+												IconComponent && (
+													<>
+														<TooltipProvider>
+															<Tooltip>
+																<TooltipTrigger>
+																	<IconComponent
+																		className="mr-1"
+																		key={platform.platform.id}
+																	/>
+																</TooltipTrigger>
+																<TooltipContent>
+																	<p>{platform.platform.name}</p>
+																</TooltipContent>
+															</Tooltip>
+														</TooltipProvider>
+													</>
+												)
+											);
+										})}
+										{game.parent_platforms.length > 5 && (
+											<>
+												<TooltipProvider>
+													<Tooltip>
+														<TooltipTrigger>
+															<span>+{game.parent_platforms.length - 5}</span>
+														</TooltipTrigger>
+														<TooltipContent>
+															<p>
+																{game.parent_platforms
+																	.slice(5)
+																	.map((platform) => platform.platform.name)
+																	.join(", ")}
+															</p>
+														</TooltipContent>
+													</Tooltip>
+												</TooltipProvider>
+											</>
+										)}
+									</div>
+									{game.metacritic && (
+										<div className="px-1 border-2 rounded-md">
+											{game.metacritic}
+										</div>
+									)}
 								</div>
-							)}
-						</Card>
-						<span className="font-semibold text-xs sm:text-sm md:text-md">
-							{game.name}
-						</span>
-					</Link>
+								<div className="space-y-1">
+									{game.genres.slice(0, 3).map((genre) => (
+										<Badge key={genre.id} variant="default" className="mr-1">
+											{genre.name}
+										</Badge>
+									))}
+									{game.genres.length > 3 && (
+										<Badge key="moreGenres" variant="default">
+											+{game.genres.length - 3}
+										</Badge>
+									)}
+								</div>
+							</div>
+						</HoverCardContent>
+					</HoverCard>
 				</>
 			);
 
@@ -88,7 +170,9 @@ export default function GameCard({ game, view }) {
 							</div>
 							<CardHeader>
 								<CardTitle>{game.name}</CardTitle>
-								<CardDescription>
+							</CardHeader>
+							<CardContent>
+								<div className="flex flex-col gap-1">
 									<div className="flex">
 										<div className="flex items-center flex-auto">
 											{game.parent_platforms.slice(0, 5).map((platform) => {
@@ -140,20 +224,18 @@ export default function GameCard({ game, view }) {
 											</div>
 										)}
 									</div>
-								</CardDescription>
-							</CardHeader>
-							<CardContent>
-								<div className="space-x-1 space-y-1">
-									{game.genres.slice(0, 3).map((genre) => (
-										<Badge key={genre.id} variant="default">
-											{genre.name}
-										</Badge>
-									))}
-									{game.genres.length > 3 && (
-										<Badge key="moreGenres" variant="default">
-											+{game.genres.length - 3}
-										</Badge>
-									)}
+									<div className="space-y-1">
+										{game.genres.slice(0, 3).map((genre) => (
+											<Badge key={genre.id} variant="default" className="mr-1">
+												{genre.name}
+											</Badge>
+										))}
+										{game.genres.length > 3 && (
+											<Badge key="moreGenres" variant="default">
+												+{game.genres.length - 3}
+											</Badge>
+										)}
+									</div>
 								</div>
 							</CardContent>
 						</Card>
@@ -176,8 +258,7 @@ export default function GameCard({ game, view }) {
 												alt={game.name}
 											/>
 										) : (
-											<div className="bg-primary w-full h-full items-center justify-center flex">
-											</div>
+											<div className="bg-primary w-full h-full items-center justify-center flex"></div>
 										)}
 									</div>
 									<div className="flex gap-2 flex-col">

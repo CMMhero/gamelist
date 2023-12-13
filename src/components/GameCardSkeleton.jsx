@@ -1,7 +1,7 @@
 import {
 	Card,
+	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
@@ -27,7 +27,9 @@ export function GameCardSkeleton({ view }) {
 								<Skeleton className="w-full h-6 mb-1" />
 								<Skeleton className="w-32 h-6" />
 							</CardTitle>
-							<CardDescription>
+						</CardHeader>
+						<CardContent>
+							<div className="flex flex-col gap-1">
 								<div className="flex">
 									<div className="flex items-center flex-auto">
 										<Skeleton className="w-4 h-4 rounded-md mr-1" />
@@ -37,14 +39,12 @@ export function GameCardSkeleton({ view }) {
 									<Skeleton className="w-6 h-5" />
 								</div>
 								<div className="flex"></div>
-							</CardDescription>
-						</CardHeader>
-						<CardFooter>
-							<div className="flex">
-								<Skeleton className="w-12 h-5 mr-1 rounded-full" />
-								<Skeleton className="w-12 h-5 rounded-full" />
+								<div className="flex">
+									<Skeleton className="w-12 h-5 mr-1 rounded-full" />
+									<Skeleton className="w-12 h-5 rounded-full" />
+								</div>
 							</div>
-						</CardFooter>
+						</CardContent>
 					</Card>
 				</>
 			);
