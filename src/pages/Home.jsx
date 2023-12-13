@@ -113,16 +113,16 @@ export default function Home() {
 							<div
 								className={`grid ${
 									viewType === "grid"
-										? "grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5"
+										? "grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
 										: viewType === "cards"
-										? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+										? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
 										: viewType === "list"
-										? "grid-cols-1"
+										? "grid-cols-1 gap-4 md:gap-4"
 										: ""
-								} gap-4 md:gap-8 my-8`}
+								} my-8`}
 							>
 								{Array.from({ length: 20 }).map((_, index) => (
-									<GameCardSkeleton key={index} />
+									<GameCardSkeleton key={index} view={viewType}/>
 								))}
 							</div>
 						)}

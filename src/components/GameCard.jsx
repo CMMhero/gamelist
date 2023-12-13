@@ -168,13 +168,16 @@ export default function GameCard({ game, view }) {
 						<Card className="w-full h-full cursor-pointer overflow-hidden">
 							<div className="flex p-4">
 								<div className="flex gap-4">
-									<div className="flex items-center h-20 aspect-square md:h-16 md:aspect-video justify-center overflow-hidden text-center rounded-lg bg-primary">
-										{game.background_image && (
+									<div className="h-20 aspect-square md:h-16 md:aspect-video overflow-hidden rounded-lg">
+										{game.background_image ? (
 											<Image
 												className="w-full h-full object-cover"
 												src={game.background_image}
 												alt={game.name}
 											/>
+										) : (
+											<div className="bg-primary w-full h-full items-center justify-center flex">
+											</div>
 										)}
 									</div>
 									<div className="flex gap-2 flex-col">
