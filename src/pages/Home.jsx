@@ -10,6 +10,7 @@ export default function Home() {
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(false);
 	const [orderBy, setOrderBy] = useState("popularity");
+	const [viewType, setViewType] = useState("grid");
 	const loaderRef = useRef(null);
 
 	useEffect(() => {
@@ -52,23 +53,74 @@ export default function Home() {
 		setOrderBy(newOrder);
 	};
 
+	const handleViewChange = (type) => {
+		setViewType(type);
+	};
+
 	return (
 		<>
 			<NavBar />
 			<div className="sm:container py-8 md:py-16">
-				<div className="px-8 md:px-16">
+				<div className="px-4 md:px-16">
 					<Title text="Top Games" />
+					<div className="flex items-center justify-end mb-4">
+						<span className="mr-2">View:</span>
+						<button
+							className={`px-3 py-1 ${
+								viewType === "grid" ? "bg-primary text-primary-foreground" : ""
+							}`}
+							onClick={() => handleViewChange("grid")}
+						>
+							Grid
+						</button>
+						<button
+							className={`px-3 py-1 ${
+								viewType === "cards" ? "bg-primary text-primary-foreground" : ""
+							}`}
+							onClick={() => handleViewChange("cards")}
+						>
+							Cards
+						</button>
+						<button
+							className={`px-3 py-1 ${
+								viewType === "list" ? "bg-primary text-primary-foreground" : ""
+							}`}
+							onClick={() => handleViewChange("list")}
+						>
+							List
+						</button>
+					</div>
 					<Filter onFilterChange={handleFilterChange} />
 					{games.length > 0 && (
-						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
+						<div
+							className={`grid ${
+								viewType === "grid"
+									? "grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
+									: viewType === "cards"
+									? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+									: viewType === "list"
+									? "grid-cols-1 gap-4 md:gap-4"
+									: ""
+							} mt-8`}
+						>
 							{games.map((game) => (
-								<GameCard key={game.id} game={game} />
+								<GameCard key={game.id} game={game} view={viewType} />
 							))}
 						</div>
 					)}
 					<div className="w-full h-8" ref={loaderRef}>
 						{loading && (
-							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
+							<div
+								className={`grid ${
+									viewType === "grid"
+										? "grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5"
+										: viewType === "cards"
+										? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+										: viewType === "list"
+										? "grid-cols-1"
+										: ""
+								} gap-4 md:gap-8 my-8`}
+							>
 								{Array.from({ length: 20 }).map((_, index) => (
 									<GameCardSkeleton key={index} />
 								))}

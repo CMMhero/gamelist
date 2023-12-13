@@ -42,88 +42,223 @@ const platformIcon = {
 	ios: SiIos,
 };
 
-export default function GameCard({ game }) {
-	return (
-		<>
-			<Link key={game.id} to={`/game/${game.id}`}>
-				<Card className="w-full h-full transition duration-500 cursor-pointer hover:scale-105 md:hover:scale-110">
-					<div className="flex items-center justify-center w-full h-40 overflow-hidden text-center rounded-t-lg bg-primary">
-						{game.background_image ? (
-							<Image
-								className="w-full h-full object-cover"
-								src={game.background_image}
-								alt={game.name}
-							/>
-						) : (
-							<span className="text-primary-foreground">{game.name}</span>
-						)}
-					</div>
-					<CardHeader>
-						<CardTitle>{game.name}</CardTitle>
-						<CardDescription>
-							<div className="flex">
-								<div className="flex items-center flex-auto">
-									{game.parent_platforms.slice(0, 5).map((platform) => {
-										const IconComponent = platformIcon[platform.platform.slug];
-										return (
-											IconComponent && (
+export default function GameCard({ game, view }) {
+	switch (view) {
+		case "grid":
+			return (
+				<>
+					<Link key={game.id} to={`/game/${game.id}`}>
+						<Card className="flex items-center justify-center aspect-[1/1.5] text-center bg-primary overflow-hidden mb-1">
+							{game.background_image ? (
+								<Image
+									className="w-full h-full object-cover"
+									src={game.background_image}
+									alt={game.name}
+								/>
+							) : (
+								<span className="text-primary-foreground">{game.name}</span>
+							)}
+						</Card>
+						<span className="font-semibold text-xs sm:text-sm md:text-md">{game.name}</span>
+					</Link>
+				</>
+			);
+
+		case "cards":
+			return (
+				<>
+					<Link key={game.id} to={`/game/${game.id}`}>
+						<Card className="w-full h-full cursor-pointer overflow-hidden">
+							<div className="flex items-center aspect-video justify-center overflow-hidden text-center bg-primary">
+								{game.background_image ? (
+									<Image
+										className="w-full h-full object-cover"
+										src={game.background_image}
+										alt={game.name}
+									/>
+								) : (
+									<span className="text-primary-foreground">{game.name}</span>
+								)}
+							</div>
+							<CardHeader>
+								<CardTitle>{game.name}</CardTitle>
+								<CardDescription>
+									<div className="flex">
+										<div className="flex items-center flex-auto">
+											{game.parent_platforms.slice(0, 5).map((platform) => {
+												const IconComponent =
+													platformIcon[platform.platform.slug];
+												return (
+													IconComponent && (
+														<>
+															<TooltipProvider>
+																<Tooltip>
+																	<TooltipTrigger>
+																		<IconComponent
+																			className="mr-1"
+																			key={platform.platform.id}
+																		/>
+																	</TooltipTrigger>
+																	<TooltipContent>
+																		<p>{platform.platform.name}</p>
+																	</TooltipContent>
+																</Tooltip>
+															</TooltipProvider>
+														</>
+													)
+												);
+											})}
+											{game.parent_platforms.length > 5 && (
 												<>
 													<TooltipProvider>
 														<Tooltip>
 															<TooltipTrigger>
-																<IconComponent
-																	className="mr-1"
-																	key={platform.platform.id}
-																/>
+																<span>+{game.parent_platforms.length - 5}</span>
 															</TooltipTrigger>
 															<TooltipContent>
-																<p>{platform.platform.name}</p>
+																<p>
+																	{game.parent_platforms
+																		.slice(5)
+																		.map((platform) => platform.platform.name)
+																		.join(", ")}
+																</p>
 															</TooltipContent>
 														</Tooltip>
 													</TooltipProvider>
 												</>
-											)
-										);
-									})}
-									{game.parent_platforms.length > 5 && (
-										<>
-											<TooltipProvider>
-												<Tooltip>
-													<TooltipTrigger>
-														<span>+{game.parent_platforms.length - 5}</span>
-													</TooltipTrigger>
-													<TooltipContent>
-														<p>
-															{game.parent_platforms
-																.slice(5)
-																.map((platform) => platform.platform.name)
-																.join(", ")}
-														</p>
-													</TooltipContent>
-												</Tooltip>
-											</TooltipProvider>
-										</>
+											)}
+										</div>
+										{game.metacritic && (
+											<div className="px-1 border-2 rounded-md">
+												{game.metacritic}
+											</div>
+										)}
+									</div>
+								</CardDescription>
+							</CardHeader>
+							<CardContent>
+								<div className="space-x-1 space-y-1">
+									{game.genres.slice(0, 3).map((genre) => (
+										<Badge key={genre.id} variant="default">
+											{genre.name}
+										</Badge>
+									))}
+									{game.genres.length > 3 && (
+										<Badge key="moreGenres" variant="default">
+											+{game.genres.length - 3}
+										</Badge>
 									)}
 								</div>
-								{game.metacritic && (
-									<div className="px-1 border-2 rounded-md">
-										{game.metacritic}
+							</CardContent>
+						</Card>
+					</Link>
+				</>
+			);
+
+		case "list":
+			return (
+				<>
+					<Link key={game.id} to={`/game/${game.id}`}>
+						<Card className="w-full h-full cursor-pointer overflow-hidden">
+							<div className="flex p-4">
+								<div className="flex gap-4">
+									<div className="flex items-center h-20 aspect-square md:h-16 md:aspect-video justify-center overflow-hidden text-center rounded-lg bg-primary">
+										{game.background_image && (
+											<Image
+												className="w-full h-full object-cover"
+												src={game.background_image}
+												alt={game.name}
+											/>
+										)}
 									</div>
-								)}
+									<div className="flex gap-2 flex-col">
+										<CardTitle className="font-semibold text-sm sm:text-md md:text-lg">
+											{game.name}
+										</CardTitle>
+										<CardDescription>
+											<div className="flex flex-col md:flex-row gap-2">
+												<div className="space-y-1 space-x-1">
+													{game.genres.slice(0, 3).map((genre) => (
+														<Badge
+															key={genre.id}
+															variant="default"
+														>
+															{genre.name}
+														</Badge>
+													))}
+													{game.genres.length > 3 && (
+														<Badge
+															key="moreGenres"
+															variant="default"
+														>
+															+{game.genres.length - 3}
+														</Badge>
+													)}
+												</div>
+												<div className="flex">
+													{game.parent_platforms.slice(0, 5).map((platform) => {
+														const IconComponent =
+															platformIcon[platform.platform.slug];
+														return (
+															IconComponent && (
+																<>
+																	<TooltipProvider>
+																		<Tooltip>
+																			<TooltipTrigger>
+																				<IconComponent
+																					className="mr-1"
+																					key={platform.platform.id}
+																				/>
+																			</TooltipTrigger>
+																			<TooltipContent>
+																				<p>{platform.platform.name}</p>
+																			</TooltipContent>
+																		</Tooltip>
+																	</TooltipProvider>
+																</>
+															)
+														);
+													})}
+													{game.parent_platforms.length > 5 && (
+														<>
+															<TooltipProvider>
+																<Tooltip>
+																	<TooltipTrigger>
+																		<span>
+																			+{game.parent_platforms.length - 5}
+																		</span>
+																	</TooltipTrigger>
+																	<TooltipContent>
+																		<p>
+																			{game.parent_platforms
+																				.slice(5)
+																				.map(
+																					(platform) => platform.platform.name
+																				)
+																				.join(", ")}
+																		</p>
+																	</TooltipContent>
+																</Tooltip>
+															</TooltipProvider>
+														</>
+													)}
+													{game.metacritic && (
+														<div className="mx-1 px-1 border-2 rounded-md">
+															{game.metacritic}
+														</div>
+													)}
+												</div>
+											</div>
+										</CardDescription>
+									</div>
+								</div>
 							</div>
-						</CardDescription>
-					</CardHeader>
-					<CardContent>
-						<div>
-							{game.genres.map((genre) => (
-								<Badge key={genre.id} variant="default" className="mb-1 mr-1">
-									{genre.name}
-								</Badge>
-							))}
-						</div>
-					</CardContent>
-				</Card>
-			</Link>
-		</>
-	);
+						</Card>
+					</Link>
+				</>
+			);
+
+		default:
+			return null;
+	}
 }

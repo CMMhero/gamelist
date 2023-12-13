@@ -106,13 +106,13 @@ export default function Game() {
 												About
 											</span>
 											<div
-												className="space-y-4"
+												className="space-y-4 my-4"
 												dangerouslySetInnerHTML={{ __html: game.description }}
 											></div>
 											<GameInfo game={game} stores={stores} />
 										</div>
 									</div>
-									<div className="col-span-9 md:col-span-3">
+									<div className="col-span-9 space-y-4 md:col-span-3">
 										{screenshots.length > 0 && (
 											<div className="my-8">
 												<span className="text-2xl font-bold text-primary">
