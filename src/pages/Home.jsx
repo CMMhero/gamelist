@@ -54,9 +54,8 @@ export default function Home() {
 	};
 
 	const handleViewChange = (type) => {
-		if (type) {
+		if (!type) return;
 			setViewType(type);
-		}
 	};
 
 	return (
@@ -73,7 +72,7 @@ export default function Home() {
 						<div
 							className={`grid ${
 								viewType === "grid"
-									? "grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
+									? "grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
 									: viewType === "cards"
 									? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
 									: viewType === "list"
@@ -86,12 +85,12 @@ export default function Home() {
 							))}
 						</div>
 					)}
-					<div className="w-full h-8" ref={loaderRef}>
+					<div className="w-full h-[50vh] bg-primary" ref={loaderRef}>
 						{loading && (
 							<div
 								className={`grid ${
 									viewType === "grid"
-										? "grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
+										? "grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
 										: viewType === "cards"
 										? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
 										: viewType === "list"

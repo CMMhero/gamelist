@@ -78,9 +78,9 @@ export default function GameCard({ game, view }) {
 						</HoverCardTrigger>
 						<HoverCardContent>
 							<div className="flex flex-col gap-1">
-							<span className="font-semibold text-xs sm:text-sm md:text-md">
-								{game.name}
-							</span>
+								<span className="font-semibold text-xs sm:text-sm md:text-md">
+									{game.name}
+								</span>
 								<div className="flex">
 									<div className="flex items-center flex-auto">
 										{game.parent_platforms.slice(0, 5).map((platform) => {
