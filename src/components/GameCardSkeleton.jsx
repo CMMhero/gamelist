@@ -11,7 +11,7 @@ export function GameCardSkeleton({ view }) {
 		case "grid":
 			return (
 				<div className="flex flex-col gap-2">
-					<Card className="aspect-[1/1.5] overflow-hidden">
+					<Card className="aspect-[1.5/1] overflow-hidden">
 						<Skeleton className="w-full h-full" />
 					</Card>
 					<Skeleton className="w-32 h-6" />

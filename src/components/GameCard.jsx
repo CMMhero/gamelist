@@ -48,7 +48,7 @@ export default function GameCard({ game, view }) {
 			return (
 				<>
 					<Link key={game.id} to={`/game/${game.id}`}>
-						<Card className="aspect-[1/1.5] overflow-hidden mb-1">
+						<Card className="aspect-[1.5/1] overflow-hidden mb-1">
 							{game.background_image ? (
 								<Image
 									className="w-full h-full object-cover"
