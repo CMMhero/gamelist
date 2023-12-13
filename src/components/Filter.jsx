@@ -6,7 +6,7 @@ import {
 	FormField,
 	FormItem,
 	FormLabel,
-	FormMessage
+	FormMessage,
 } from "@/components/ui/form";
 import {
 	Select,
@@ -15,24 +15,29 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-export default function Filter({ onFilterChange }) {
+
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Grid2X2, Grid3X3, TableProperties } from "lucide-react";
+
+export default function Filter({ onFilterChange, onViewChange }) {
 	const form = useForm();
 
 	function onSubmit(data) {
 		console.log(data);
 	}
 
-	const handleValueChange = (value) => {
+	const handleFilterChange = (value) => {
 		onFilterChange(value); // Pass the selected value to the callback
 	};
 
+	const handleViewChange = (value) => {
+		onViewChange(value); // Pass the selected value to the callback
+	};
+
 	return (
-		<div className="flex">
+		<div className="">
 			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className="w-[160px]"
-				>
+				<form onSubmit={form.handleSubmit(onSubmit)} className="gap-4 flex">
 					<FormField
 						control={form.control}
 						name="email"
@@ -42,7 +47,7 @@ export default function Filter({ onFilterChange }) {
 								<Select
 									onValueChange={(value) => {
 										field.onChange(value);
-										handleValueChange(value);
+										handleFilterChange(value);
 									}}
 									defaultValue="popularity"
 								>
@@ -58,6 +63,33 @@ export default function Filter({ onFilterChange }) {
 										<SelectItem value="-metacritic">Rating</SelectItem>
 									</SelectContent>
 								</Select>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="email"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>View</FormLabel>
+								<ToggleGroup
+									type="single"
+									onValueChange={(value) => {
+										field.onChange(value);
+										handleViewChange(value);
+									}}
+								>
+									<ToggleGroupItem value="grid" aria-label="Grid view">
+										<Grid3X3 />
+									</ToggleGroupItem>
+									<ToggleGroupItem value="cards" aria-label="Cards view">
+										<Grid2X2 />
+									</ToggleGroupItem>
+									<ToggleGroupItem value="list" aria-label="List view">
+										<TableProperties />
+									</ToggleGroupItem>
+								</ToggleGroup>
 								<FormMessage />
 							</FormItem>
 						)}

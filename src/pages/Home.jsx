@@ -54,7 +54,9 @@ export default function Home() {
 	};
 
 	const handleViewChange = (type) => {
-		setViewType(type);
+		if (type) {
+			setViewType(type);
+		}
 	};
 
 	return (
@@ -63,34 +65,10 @@ export default function Home() {
 			<div className="sm:container py-8 md:py-16">
 				<div className="px-4 md:px-16">
 					<Title text="Top Games" />
-					<div className="flex items-center justify-end mb-4">
-						<span className="mr-2">View:</span>
-						<button
-							className={`px-3 py-1 ${
-								viewType === "grid" ? "bg-primary text-primary-foreground" : ""
-							}`}
-							onClick={() => handleViewChange("grid")}
-						>
-							Grid
-						</button>
-						<button
-							className={`px-3 py-1 ${
-								viewType === "cards" ? "bg-primary text-primary-foreground" : ""
-							}`}
-							onClick={() => handleViewChange("cards")}
-						>
-							Cards
-						</button>
-						<button
-							className={`px-3 py-1 ${
-								viewType === "list" ? "bg-primary text-primary-foreground" : ""
-							}`}
-							onClick={() => handleViewChange("list")}
-						>
-							List
-						</button>
-					</div>
-					<Filter onFilterChange={handleFilterChange} />
+					<Filter
+						onFilterChange={handleFilterChange}
+						onViewChange={handleViewChange}
+					/>
 					{games.length > 0 && (
 						<div
 							className={`grid ${
@@ -122,7 +100,7 @@ export default function Home() {
 								} my-8`}
 							>
 								{Array.from({ length: 20 }).map((_, index) => (
-									<GameCardSkeleton key={index} view={viewType}/>
+									<GameCardSkeleton key={index} view={viewType} />
 								))}
 							</div>
 						)}
