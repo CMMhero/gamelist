@@ -33,7 +33,7 @@ export default function SearchBox() {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&search=${searchQuery}&page_size=10`
+					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&search=${searchQuery}&page_size=10&search_precise`
 				);
 				const data = await response.json();
 				// console.log(data.results);
@@ -81,14 +81,15 @@ export default function SearchBox() {
 					/>
 				</div>
 				<CommandList>
-					<CommandEmpty>No results found.</CommandEmpty>
 					<CommandGroup heading="Results">
+					<CommandEmpty>No results found.</CommandEmpty>
 						{searchResults.map((result) => (
 							<Link to={`/game/${result.id}`} key={result.id}>
 								<CommandItem
 									className="cursor-pointer"
 									onPointerDown={() => {
 										setOpen(false);
+										setSearchQuery("");
 									}}
 								>
 									<div className="flex gap-2 items-center">
@@ -101,7 +102,6 @@ export default function SearchBox() {
 												/>
 											) : (
 												<div className="aspect-[1.5/1] object-cover w-20 rounded bg-secondary flex items-center text-center justify-center overflow-hidden">
-													<span className="text-xs">{result.name}</span>
 												</div>
 											)}
 										</div>
