@@ -104,9 +104,9 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="gap-4 flex flex-col lg:flex-row w-full justify-between items-end"
+					className="flex flex-col justify-between w-full gap-4 lg:flex-row"
 				>
-					<div className="flex gap-4 overflow-scroll">
+					<div className="flex items-end gap-4 overflow-scroll">
 						<div>
 							<FormField
 								control={form.control}
@@ -189,7 +189,7 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 							/>
 						</div>
 					</div>
-					<div className="flex gap-4 justify-between">
+					<div className="flex justify-between gap-4">
 						<div className="w-[160px]">
 							<FormField
 								control={form.control}
