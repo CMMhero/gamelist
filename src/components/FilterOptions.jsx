@@ -47,15 +47,15 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 								<Separator orientation="vertical" className="mx-2 h-4" />
 								{/* ... (your existing badge logic) */}
 								<Badge
-									variant="secondary"
+									variant="default"
 									className="rounded-sm px-1 font-normal lg:hidden"
 								>
 									{selectedValues.size}
 								</Badge>
 								<div className="hidden space-x-1 lg:flex">
-									{selectedValues.size > 2 ? (
+									{selectedValues.size > 1 ? (
 										<Badge
-											variant="secondary"
+											variant="default"
 											className="rounded-sm px-1 font-normal"
 										>
 											{selectedValues.size} selected
@@ -65,7 +65,7 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 											.filter((option) => selectedValues.has(option.value))
 											.map((option) => (
 												<Badge
-													variant="secondary"
+													variant="default"
 													key={option.value}
 													className="rounded-sm px-1 font-normal"
 												>

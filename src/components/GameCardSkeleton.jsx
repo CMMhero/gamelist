@@ -60,7 +60,7 @@ export function GameCardSkeleton({ view }) {
 									</CardTitle>
 									<CardDescription>
 										<div className="flex flex-col md:flex-row gap-2">
-											<div className="flex space-y-1">
+											<div className="flex">
 												<Skeleton className="w-12 h-5 mr-1 rounded-full" />
 												<Skeleton className="w-12 h-5 mr-1 rounded-full" />
 												<Skeleton className="w-12 h-5 rounded-full" />

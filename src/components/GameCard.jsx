@@ -64,7 +64,7 @@ export default function GameCard({ game, view }) {
 											alt={game.name}
 										/>
 									) : (
-										<div className="bg-primary w-full h-full items-center justify-center flex">
+										<div className="bg-primary w-full h-full items-center justify-center flex text-center">
 											<span className="text-primary-foreground">
 												{game.name}
 											</span>
@@ -127,9 +127,9 @@ export default function GameCard({ game, view }) {
 										)}
 									</div>
 									{game.metacritic && (
-										<div className="px-1 border-2 rounded-md">
+										<Badge variant="secondary" className="rounded-md px-2">
 											{game.metacritic}
-										</div>
+										</Badge>
 									)}
 								</div>
 								<div className="space-y-1">
@@ -163,7 +163,7 @@ export default function GameCard({ game, view }) {
 										alt={game.name}
 									/>
 								) : (
-									<div className="bg-primary w-full h-full items-center justify-center flex">
+									<div className="bg-primary w-full h-full items-center justify-center flex text-center">
 										<span className="text-primary-foreground">{game.name}</span>
 									</div>
 								)}
@@ -219,9 +219,9 @@ export default function GameCard({ game, view }) {
 											)}
 										</div>
 										{game.metacritic && (
-											<div className="px-1 border-2 rounded-md">
+											<Badge variant="secondary" className="rounded-md px-2">
 												{game.metacritic}
-											</div>
+											</Badge>
 										)}
 									</div>
 									<div className="space-y-1">
@@ -267,19 +267,35 @@ export default function GameCard({ game, view }) {
 										</CardTitle>
 										<CardDescription>
 											<div className="flex flex-col md:flex-row gap-2">
-												<div className="flex space-y-1">
+												<div className="hidden sm:flex">
 													{game.genres.slice(0, 3).map((genre) => (
 														<Badge
 															key={genre.id}
 															variant="default"
 															className="mr-1"
 														>
-															<span className="text-xs">{genre.name}</span>
+															{genre.name}
 														</Badge>
 													))}
 													{game.genres.length > 3 && (
 														<Badge key="moreGenres" variant="default">
 															+{game.genres.length - 3}
+														</Badge>
+													)}
+												</div>
+												<div className="flex sm:hidden">
+													{game.genres.slice(0, 2).map((genre) => (
+														<Badge
+															key={genre.id}
+															variant="default"
+															className="mr-1"
+														>
+															{genre.name}
+														</Badge>
+													))}
+													{game.genres.length > 2 && (
+														<Badge key="moreGenres" variant="default">
+															+{game.genres.length - 2}
 														</Badge>
 													)}
 												</div>
@@ -312,7 +328,7 @@ export default function GameCard({ game, view }) {
 															<TooltipProvider>
 																<Tooltip>
 																	<TooltipTrigger>
-																		<span>
+																		<span className="mr-1">
 																			+{game.parent_platforms.length - 5}
 																		</span>
 																	</TooltipTrigger>
@@ -331,9 +347,9 @@ export default function GameCard({ game, view }) {
 														</>
 													)}
 													{game.metacritic && (
-														<div className="mx-1 px-1 border-2 rounded-md">
+														<Badge variant="secondary" className="rounded-md px-2">
 															{game.metacritic}
-														</div>
+														</Badge>
 													)}
 												</div>
 											</div>

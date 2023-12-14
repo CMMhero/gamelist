@@ -99,9 +99,92 @@ export default function Filter({ onFilterChange, onViewChange }) {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="gap-4 flex w-full justify-between"
+					className="gap-4 flex flex-col lg:flex-row w-full justify-between items-end"
 				>
-					<div className="flex gap-4">
+					<div className="flex gap-4 overflow-scroll">
+						<div>
+							<FormField
+								control={form.control}
+								name="view"
+								render={({ field }) => (
+									<FormItem>
+										{/* <FormLabel>Genres</FormLabel> */}
+										<FilterOptions
+											title="Genres"
+											options={
+												genres
+													? genres.map((option) => ({
+															name: option.name,
+															value: option.slug,
+													  }))
+													: []
+											}
+											onFilterChange={(value) => {
+												field.onChange(value);
+												handleGenreChange(value);
+											}}
+										/>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<div>
+							<FormField
+								control={form.control}
+								name="view"
+								render={({ field }) => (
+									<FormItem>
+										{/* <FormLabel>Platforms</FormLabel> */}
+										<FilterOptions
+											title="Platforms"
+											options={
+												platforms
+													? platforms.map((option) => ({
+															name: option.name,
+															value: option.slug,
+													  }))
+													: []
+											}
+											onFilterChange={(value) => {
+												field.onChange(value);
+												handleGenreChange(value);
+											}}
+										/>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<div>
+							<FormField
+								control={form.control}
+								name="view"
+								render={({ field }) => (
+									<FormItem>
+										{/* <FormLabel>Stores</FormLabel> */}
+										<FilterOptions
+											title="Stores"
+											options={
+												stores
+													? stores.map((option) => ({
+															name: option.name,
+															value: option.slug,
+													  }))
+													: []
+											}
+											onFilterChange={(value) => {
+												field.onChange(value);
+												handleGenreChange(value);
+											}}
+										/>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+					</div>
+					<div className="flex gap-4 justify-between">
 						<div className="w-[160px]">
 							<FormField
 								control={form.control}
@@ -133,119 +216,38 @@ export default function Filter({ onFilterChange, onViewChange }) {
 								)}
 							/>
 						</div>
-						<div>
+						<div className="w-auto">
 							<FormField
 								control={form.control}
 								name="view"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Genres</FormLabel>
-										<FilterOptions
-											title="Genres"
-											options={
-												genres
-													? genres.map((option) => ({
-															name: option.name,
-															value: option.slug,
-													  }))
-													: []
-											}
-											onFilterChange={(value) => {
+										<FormLabel>View</FormLabel>
+										<Tabs
+											defaultValue={localStorage.getItem("view") || "grid"}
+											onValueChange={(value) => {
+												if (value == "") return;
 												field.onChange(value);
-												handleGenreChange(value);
+												handleViewChange(value);
 											}}
-										/>
+										>
+											<TabsList className="grid w-full h-full grid-cols-3">
+												<TabsTrigger value="grid">
+													<Grid3X3 />
+												</TabsTrigger>
+												<TabsTrigger value="cards">
+													<Grid2X2 />
+												</TabsTrigger>
+												<TabsTrigger value="list">
+													<TableProperties />
+												</TabsTrigger>
+											</TabsList>
+										</Tabs>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
 						</div>
-						<div>
-							<FormField
-								control={form.control}
-								name="view"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Platforms</FormLabel>
-										<FilterOptions
-											title="Platforms"
-											options={
-												platforms
-													? platforms.map((option) => ({
-															name: option.name,
-															value: option.slug,
-													  }))
-													: []
-											}
-											onFilterChange={(value) => {
-												field.onChange(value);
-												handleGenreChange(value);
-											}}
-										/>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-						<div>
-							<FormField
-								control={form.control}
-								name="view"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Stores</FormLabel>
-										<FilterOptions
-											title="Stores"
-											options={
-												stores
-													? stores.map((option) => ({
-															name: option.name,
-															value: option.slug,
-													  }))
-													: []
-											}
-											onFilterChange={(value) => {
-												field.onChange(value);
-												handleGenreChange(value);
-											}}
-										/>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-					</div>
-					<div>
-						<FormField
-							control={form.control}
-							name="view"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>View</FormLabel>
-									<Tabs
-										defaultValue={localStorage.getItem("view") || "grid"}
-										onValueChange={(value) => {
-											if (value == "") return;
-											field.onChange(value);
-											handleViewChange(value);
-										}}
-									>
-										<TabsList className="grid w-full h-full grid-cols-3">
-											<TabsTrigger value="grid">
-												<Grid3X3 />
-											</TabsTrigger>
-											<TabsTrigger value="cards">
-												<Grid2X2 />
-											</TabsTrigger>
-											<TabsTrigger value="list">
-												<TableProperties />
-											</TabsTrigger>
-										</TabsList>
-									</Tabs>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
 					</div>
 				</form>
 			</Form>
