@@ -10,6 +10,9 @@ export default function Home() {
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(false);
 	const [orderBy, setOrderBy] = useState("popularity");
+	const [genres, setGenres] = useState([]);
+	const [platforms, setPlatforms] = useState([]);
+	const [stores, setStores] = useState([]);
 	const [viewType, setViewType] = useState(
 		localStorage.getItem("view") || "grid"
 	);
@@ -20,7 +23,10 @@ export default function Home() {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page=${page}&ordering=${orderBy}`
+					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page=${page}&ordering=${orderBy}
+					${platforms.length ? `&parent_platforms=${platforms.join(", ")}` : ``}
+					${genres.length ? `&genres=${genres.join(",")}` : ``}
+					${stores.length ? `&stores=${stores.join(",")}` : ``}`
 				);
 				const data = await response.json();
 				setGames((prevGames) => [...prevGames, ...data.results]);
@@ -49,10 +55,26 @@ export default function Home() {
 		return () => observer.disconnect();
 	}, [page, loading, orderBy]);
 
-	const handleFilterChange = (newOrder) => {
-		setGames([]); // Clear existing games when changing ordering
-		setPage(1); // Reset page to 1 when changing ordering
-		setOrderBy(newOrder);
+	const handleFilterChange = (value) => {
+		setGames([]);
+		setPage(1);
+		setOrderBy(value);
+	};
+
+	const handleGenreChange = (value) => {
+		setGames([]);
+		setPage(1);
+		setGenres(value);
+	};
+	const handlePlatformChange = (value) => {
+		setGames([]);
+		setPage(1);
+		setPlatforms(value);
+	};
+	const handleStoreChange = (value) => {
+		setGames([]);
+		setPage(1);
+		setStores(value);
 	};
 
 	const handleViewChange = (type) => {
@@ -69,6 +91,9 @@ export default function Home() {
 					<Filter
 						onFilterChange={handleFilterChange}
 						onViewChange={handleViewChange}
+						onGenreChange={handleGenreChange}
+						onPlatformChange={handlePlatformChange}
+						onStoreChange={handleStoreChange}
 					/>
 					{games.length > 0 && (
 						<div

@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import { Grid2X2, Grid3X3, TableProperties } from "lucide-react";
 import FilterOptions from "./FilterOptions";
 
-export default function Filter({ onFilterChange, onViewChange }) {
+export default function Filter({ onFilterChange, onViewChange, onGenreChange, onPlatformChange, onStoreChange }) {
 	const form = useForm();
 	const [genres, setGenres] = useState(null);
 	// const [tags, setTags] = useState(null);
@@ -81,17 +81,22 @@ export default function Filter({ onFilterChange, onViewChange }) {
 	}
 
 	const handleFilterChange = (value) => {
-		onFilterChange(value); // Pass the selected value to the callback
+		onFilterChange(value);
 	};
 
 	const handleGenreChange = (value) => {
-		console.log(value);
-		// onFilterChange(value); // Pass the selected value to the callback
+		onGenreChange(value);
+	};
+	const handlePlatformChange = (value) => {
+		onPlatformChange(value);
+	};
+	const handleStoreChange = (value) => {
+		onStoreChange(value);
 	};
 
 	const handleViewChange = (value) => {
 		localStorage.setItem("view", value);
-		onViewChange(value); // Pass the selected value to the callback
+		onViewChange(value);
 	};
 
 	return (
@@ -142,13 +147,13 @@ export default function Filter({ onFilterChange, onViewChange }) {
 												platforms
 													? platforms.map((option) => ({
 															name: option.name,
-															value: option.slug,
+															value: option.id,
 													  }))
 													: []
 											}
 											onFilterChange={(value) => {
 												field.onChange(value);
-												handleGenreChange(value);
+												handlePlatformChange(value);
 											}}
 										/>
 										<FormMessage />
@@ -169,13 +174,13 @@ export default function Filter({ onFilterChange, onViewChange }) {
 												stores
 													? stores.map((option) => ({
 															name: option.name,
-															value: option.slug,
+															value: option.id,
 													  }))
 													: []
 											}
 											onFilterChange={(value) => {
 												field.onChange(value);
-												handleGenreChange(value);
+												handleStoreChange(value);
 											}}
 										/>
 										<FormMessage />
