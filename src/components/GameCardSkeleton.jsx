@@ -38,7 +38,6 @@ export function GameCardSkeleton({ view }) {
 									</div>
 									<Skeleton className="w-6 h-5" />
 								</div>
-								<div className="flex"></div>
 								<div className="flex">
 									<Skeleton className="w-12 h-5 mr-1 rounded-full" />
 									<Skeleton className="w-12 h-5 rounded-full" />
@@ -61,18 +60,18 @@ export function GameCardSkeleton({ view }) {
 									</CardTitle>
 									<CardDescription>
 										<div className="flex flex-col md:flex-row gap-2">
-											<div className="flex">
+											<div className="flex space-y-1">
 												<Skeleton className="w-12 h-5 mr-1 rounded-full" />
 												<Skeleton className="w-12 h-5 mr-1 rounded-full" />
 												<Skeleton className="w-12 h-5 rounded-full" />
 											</div>
-											<div className="flex">
-												<Skeleton className="w-4 h-4 rounded-md mr-1" />
-												<Skeleton className="w-4 h-4 rounded-md mr-1" />
-												<Skeleton className="w-4 h-4 rounded-md mr-1" />
+											<div className="flex items-center gap-2">
 												<Skeleton className="w-4 h-4 rounded-md" />
+												<Skeleton className="w-4 h-4 rounded-md" />
+												<Skeleton className="w-4 h-4 rounded-md" />
+												<Skeleton className="w-4 h-4 rounded-md" />
+												<Skeleton className="w-6 h-5" />
 											</div>
-											<Skeleton className="w-6 h-5" />
 										</div>
 									</CardDescription>
 								</div>

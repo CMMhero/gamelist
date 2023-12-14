@@ -267,10 +267,14 @@ export default function GameCard({ game, view }) {
 										</CardTitle>
 										<CardDescription>
 											<div className="flex flex-col md:flex-row gap-2">
-												<div className="space-y-1 space-x-1">
+												<div className="flex space-y-1">
 													{game.genres.slice(0, 3).map((genre) => (
-														<Badge key={genre.id} variant="default">
-															{genre.name}
+														<Badge
+															key={genre.id}
+															variant="default"
+															className="mr-1"
+														>
+															<span className="text-xs">{genre.name}</span>
 														</Badge>
 													))}
 													{game.genres.length > 3 && (
@@ -286,7 +290,7 @@ export default function GameCard({ game, view }) {
 														return (
 															IconComponent && (
 																<>
-																	<TooltipProvider>
+																	<TooltipProvider key={platform.platform.id}>
 																		<Tooltip>
 																			<TooltipTrigger>
 																				<IconComponent
