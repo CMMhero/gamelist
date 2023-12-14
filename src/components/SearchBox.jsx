@@ -52,7 +52,7 @@ export default function SearchBox() {
 
 	return (
 		<>
-			<div className="w-full flex-1 md:w-auto md:flex-none">
+			<div className="flex-1 w-full md:w-auto md:flex-none">
 				<Button
 					variant="outline"
 					className="w-full md:w-[200px] justify-between"
@@ -68,8 +68,8 @@ export default function SearchBox() {
 			</div>
 
 			<CommandDialog className="rounded-lg" open={open} onOpenChange={setOpen}>
-				<div className="flex items-center border-b px-3">
-					<Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+				<div className="flex items-center px-3 border-b">
+					<Search className="w-4 h-4 opacity-50 shrink-0" />
 					<Input
 						placeholder="Search games"
 						className={
@@ -82,7 +82,7 @@ export default function SearchBox() {
 				</div>
 				<CommandList>
 					<CommandGroup heading="Results">
-					<CommandEmpty>No results found.</CommandEmpty>
+						<CommandEmpty>No results found.</CommandEmpty>
 						{searchResults.map((result) => (
 							<Link to={`/game/${result.id}`} key={result.id}>
 								<CommandItem
@@ -92,17 +92,16 @@ export default function SearchBox() {
 										setSearchQuery("");
 									}}
 								>
-									<div className="flex gap-2 items-center">
+									<div className="flex items-center gap-2">
 										<div>
 											{result.background_image ? (
 												<Image
 													src={result.background_image}
 													alt={result.name}
-													className="aspect-[1.5/1] object-cover w-20 rounded"
+													className="aspect-[1.5/1] object-cover w-8 sm:w-10 md:w-12 lg:w-16 rounded"
 												/>
 											) : (
-												<div className="aspect-[1.5/1] object-cover w-20 rounded bg-secondary flex items-center text-center justify-center overflow-hidden">
-												</div>
+												<div className="aspect-[1.5/1] object-cover w-8 sm:w-10 md:w-12 lg:w-16 rounded bg-secondary flex items-center text-center justify-center overflow-hidden"></div>
 											)}
 										</div>
 										{result.name}

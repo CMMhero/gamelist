@@ -7,16 +7,16 @@ export default function About() {
 	return (
 		<>
 			<NavBar />
-			<div className="sm:container py-8 md:py-16">
+			<div className="py-8 sm:container md:py-16">
 				<div className="px-8 md:px-16">
 					<Title text="About" />
-					<span className="text-md font-semibold">
+					<span className="font-semibold text-md">
 						A simple game list website.
 					</span>
 					<br />
 					<br />
-					<span className="text-md font-semibold">Group Members</span>
-					<div className="flex flex-col justify-left items-left align-left text-left md:flex-row">
+					<span className="font-semibold text-md">Group Members</span>
+					<div className="flex flex-col text-left justify-left items-left align-left md:flex-row">
 						<Profile
 							name="Christopher Matthew Marvelio"
 							nim="00000043324"
@@ -29,8 +29,8 @@ export default function About() {
 						/>
 					</div>
 					<br />
-					<span className="text-md font-semibold">Tools used</span>
-					<div className="flex flex-col justify-left items-left align-left text-left md:flex-row">
+					<span className="font-semibold text-md">Developed using</span>
+					<div className="flex flex-col text-left justify-left items-left align-left md:flex-row">
 						<Button variant="ghost" className="space-x-1 w-fit">
 							<SiVite />
 							<span>Vite</span>
@@ -47,7 +47,7 @@ export default function About() {
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 256 256"
-								className="h-4 w-4"
+								className="w-4 h-4"
 							>
 								<rect width="256" height="256" fill="none"></rect>
 								<line
