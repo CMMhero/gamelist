@@ -24,6 +24,12 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 	const [selectedValues, setSelectedValues] = useState(new Set());
 
 	const handleSelect = (value) => {
+		if (!value) {
+			setSelectedValues(new Set());
+			onFilterChange(Array.from(new Set()));
+			return;
+		}
+
 		const updatedValues = new Set(selectedValues);
 		if (updatedValues.has(value)) {
 			updatedValues.delete(value);
@@ -40,12 +46,10 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button variant="outline" size="sm" className="h-10">
-						{/* <PlusCircledIcon className="mr-2 h-4 w-4" /> */}
 						{title}
 						{selectedValues.size > 0 && (
 							<>
 								<Separator orientation="vertical" className="mx-2 h-4" />
-								{/* ... (your existing badge logic) */}
 								<Badge
 									variant="default"
 									className="rounded-sm px-1 font-normal lg:hidden"
@@ -83,6 +87,22 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 						<CommandInput placeholder={title} />
 						<CommandList>
 							<CommandEmpty>No results found.</CommandEmpty>
+							{selectedValues.size > 0 && (
+								<>
+									<CommandGroup>
+										<CommandItem
+											onSelect={() => {
+												setSelectedValues(new Set());
+												handleSelect(null);
+											}}
+											className="justify-center text-center"
+										>
+											Clear filters
+										</CommandItem>
+									</CommandGroup>
+									<CommandSeparator />
+								</>
+							)}
 							<CommandGroup>
 								{options.map((option) => (
 									<CommandItem
@@ -99,23 +119,9 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 											<CheckIcon className="h-4 w-4" />
 										</div>
 										<span>{option.name}</span>
-										{/* ... (your existing option content) */}
 									</CommandItem>
 								))}
 							</CommandGroup>
-							{selectedValues.size > 0 && (
-								<>
-									<CommandSeparator />
-									<CommandGroup>
-										<CommandItem
-											onSelect={() => setSelectedValues(new Set())}
-											className="justify-center text-center"
-										>
-											Clear filters
-										</CommandItem>
-									</CommandGroup>
-								</>
-							)}
 						</CommandList>
 					</Command>
 				</PopoverContent>
