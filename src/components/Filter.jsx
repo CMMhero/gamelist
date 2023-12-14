@@ -25,9 +25,14 @@ import FilterOptions from "./FilterOptions";
 export default function Filter({ onFilterChange, onViewChange }) {
 	const form = useForm();
 	const [genres, setGenres] = useState(null);
+	// const [tags, setTags] = useState(null);
+	const [platforms, setPlatforms] = useState(null);
+	// const [publishers, setPublishers] = useState(null);
+	// const [developers, setDevelopers] = useState(null);
+	const [stores, setStores] = useState(null);
 
 	useEffect(() => {
-		const fetchGame = async () => {
+		const fetchGenres = async () => {
 			try {
 				const response = await fetch(
 					`https://api.rawg.io/api/genres?key=dc6f3f19206d43078b51b87ab10705b1`
@@ -36,11 +41,39 @@ export default function Filter({ onFilterChange, onViewChange }) {
 				setGenres(data.results);
 				// console.log(data.results);
 			} catch (error) {
-				console.error("Error fetching game: ", error);
+				console.error("Error fetching genres: ", error);
 			}
 		};
 
-		fetchGame();
+		const fetchPlatforms = async () => {
+			try {
+				const response = await fetch(
+					`https://api.rawg.io/api/platforms/lists/parents?key=dc6f3f19206d43078b51b87ab10705b1`
+				);
+				const data = await response.json();
+				setPlatforms(data.results);
+				// console.log(data);
+			} catch (error) {
+				console.error("Error fetching platforms: ", error);
+			}
+		};
+
+		const fetchStores = async () => {
+			try {
+				const response = await fetch(
+					`https://api.rawg.io/api/stores?key=dc6f3f19206d43078b51b87ab10705b1`
+				);
+				const data = await response.json();
+				setStores(data.results);
+				// console.log(data);
+			} catch (error) {
+				console.error("Error fetching stores: ", error);
+			}
+		};
+
+		fetchGenres();
+		fetchPlatforms();
+		fetchStores();
 	}, []);
 
 	function onSubmit(data) {
@@ -112,6 +145,60 @@ export default function Filter({ onFilterChange, onViewChange }) {
 											options={
 												genres
 													? genres.map((option) => ({
+															name: option.name,
+															value: option.slug,
+													  }))
+													: []
+											}
+											onFilterChange={(value) => {
+												field.onChange(value);
+												handleGenreChange(value);
+											}}
+										/>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<div>
+							<FormField
+								control={form.control}
+								name="view"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Platforms</FormLabel>
+										<FilterOptions
+											title="Platforms"
+											options={
+												platforms
+													? platforms.map((option) => ({
+															name: option.name,
+															value: option.slug,
+													  }))
+													: []
+											}
+											onFilterChange={(value) => {
+												field.onChange(value);
+												handleGenreChange(value);
+											}}
+										/>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<div>
+							<FormField
+								control={form.control}
+								name="view"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Stores</FormLabel>
+										<FilterOptions
+											title="Stores"
+											options={
+												stores
+													? stores.map((option) => ({
 															name: option.name,
 															value: option.slug,
 													  }))
