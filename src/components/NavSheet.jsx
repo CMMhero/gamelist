@@ -27,7 +27,7 @@ export default function NavSheet() {
 			<SheetContent side="left">
 				<SheetHeader className="text-left">
 					<SheetTitle>
-						<Link className="mr-6 flex items-center space-x-2" to="/">
+						<Link className="flex items-center mr-6 space-x-2" to="/">
 							<span className="font-bold">
 								H320 Gamelist
 							</span>
@@ -54,6 +54,16 @@ export default function NavSheet() {
 								}`}
 							>
 								About
+							</Link>
+							<Link
+								to="/browse"
+								className={`transition-colors ${
+									isLinkActive("/browse")
+										? "text-foreground"
+										: "hover:text-foreground/80 text-foreground/60"
+								}`}
+							>
+								Browse
 							</Link>
 						</nav>
 					</SheetDescription>

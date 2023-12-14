@@ -83,7 +83,6 @@ export default function Game() {
 
 	return (
 		<>
-			<NavBar />
 			{game && game.background_image ? (
 				<Image
 					className="w-full h-screen object-cover absolute z-[-1] opacity-25"
@@ -91,8 +90,9 @@ export default function Game() {
 					alt={game.name}
 				/>
 			) : (
-				<div className="w-full h-screen object-cover absolute z-[-1] opacity-25 bg-primary" />
+				<div className="w-full h-screen object-cover absolute z-[-1] opacity-25 bg-accent" />
 			)}
+			<NavBar />
 			<div className="w-full h-screen bg-gradient-to-b from-transparent from-5% via-background/80 via-20% to-background">
 				<div className="py-8 sm:container md:py-16">
 					<div className="px-8 md:px-16">
@@ -106,7 +106,7 @@ export default function Game() {
 												About
 											</span>
 											<div
-												className="space-y-4 my-4"
+												className="my-4 space-y-4"
 												dangerouslySetInnerHTML={{ __html: game.description }}
 											></div>
 											<GameInfo game={game} stores={stores} />

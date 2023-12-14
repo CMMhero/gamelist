@@ -12,12 +12,12 @@ export default function NavBar() {
 
 	return (
 		<div className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-			<div className="container flex h-14 items-center">
-				<div className="mr-2 flex md:hidden">
+			<div className="container flex items-center h-14">
+				<div className="flex mr-2 md:hidden">
 					<NavSheet />
 				</div>
-				<div className="mr-4 hidden md:flex">
-					<Link className="mr-6 flex items-center space-x-2" to="/">
+				<div className="hidden mr-4 md:flex">
+					<Link className="flex items-center mr-6 space-x-2" to="/">
 						<span className="hidden font-bold sm:inline-block">
 							H320 Gamelist
 						</span>
@@ -43,9 +43,19 @@ export default function NavBar() {
 						>
 							About
 						</Link>
+						<Link
+							to="/browse"
+							className={`transition-colors ${
+								isLinkActive("/browse")
+									? "text-foreground"
+									: "hover:text-foreground/80 text-foreground/60"
+							}`}
+						>
+							Browse
+						</Link>
 					</nav>
 				</div>
-				<div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+				<div className="flex items-center justify-between flex-1 space-x-2 md:justify-end">
 					<SearchBox />
 					<ModeToggle />
 				</div>

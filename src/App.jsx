@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import About from "./pages/About";
+import Browse from "./pages/Browse";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
@@ -13,6 +14,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/home" element={<Home />} />
+					<Route path="/browse" element={<Browse />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/game/:id" element={<Game />} />
 					<Route path="*" element={<NotFound />} />
