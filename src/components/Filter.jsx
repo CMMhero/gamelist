@@ -16,7 +16,13 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import {
+	Tabs,
+	TabsList,
+	TabsTrigger
+} from "@/components/ui/tabs";
+
+
 import { Grid2X2, Grid3X3, TableProperties } from "lucide-react";
 
 export default function Filter({ onFilterChange, onViewChange }) {
@@ -80,43 +86,26 @@ export default function Filter({ onFilterChange, onViewChange }) {
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>View</FormLabel>
-									<ToggleGroup
-										type="single"
+									<Tabs
+										defaultValue={localStorage.getItem("view") || "grid"}
 										onValueChange={(value) => {
 											if (value == "") return;
 											field.onChange(value);
 											handleViewChange(value);
 										}}
-										defaultValue={localStorage.getItem("view") || "grid"}
 									>
-										<ToggleGroupItem
-											value="grid"
-											aria-label="Grid view"
-											className={`${
-												field.value == "grid" ? "bg-accent" : "bg-transparent"
-											}`}
-										>
-											<Grid3X3 />
-										</ToggleGroupItem>
-										<ToggleGroupItem
-											value="cards"
-											aria-label="Cards view"
-											className={`${
-												field.value == "cards" ? "bg-accent" : "bg-transparent"
-											}`}
-										>
-											<Grid2X2 />
-										</ToggleGroupItem>
-										<ToggleGroupItem
-											value="list"
-											aria-label="List view"
-											className={`${
-												field.value == "list" ? "bg-accent" : "bg-transparent"
-											}`}
-										>
-											<TableProperties />
-										</ToggleGroupItem>
-									</ToggleGroup>
+										<TabsList className="grid w-full h-full grid-cols-3">
+											<TabsTrigger value="grid">
+												<Grid3X3 />
+											</TabsTrigger>
+											<TabsTrigger value="cards">
+												<Grid2X2 />
+											</TabsTrigger>
+											<TabsTrigger value="list">
+												<TableProperties />
+											</TabsTrigger>
+										</TabsList>
+									</Tabs>
 									<FormMessage />
 								</FormItem>
 							)}
