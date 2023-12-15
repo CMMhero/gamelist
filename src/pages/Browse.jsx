@@ -23,7 +23,8 @@ export default function Browse() {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page=${page}&ordering=${orderBy}
+					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page=${page}
+					&ordering=${orderBy}
 					${platforms.length ? `&parent_platforms=${platforms.join(", ")}` : ``}
 					${genres.length ? `&genres=${genres.join(",")}` : ``}
 					${stores.length ? `&stores=${stores.join(",")}` : ``}`
@@ -53,7 +54,7 @@ export default function Browse() {
 		}
 
 		return () => observer.disconnect();
-	}, [page, loading, orderBy]);
+	}, [page, loading, orderBy, platforms, genres, stores]);
 
 	const handleFilterChange = (value) => {
 		setGames([]);

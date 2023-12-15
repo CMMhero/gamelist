@@ -51,7 +51,7 @@ export default function Home() {
 		const fetchNewGames = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page_size=${size}&ordering=released&metacritic=1`
+					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page_size=${size}&ordering=released`
 				);
 				const data = await response.json();
 				setNewGames(data.results);
@@ -80,7 +80,7 @@ export default function Home() {
 					{/* Popular Games Section */}
 					<div className="mt-8">
 						<h2 className="text-xl font-semibold mb-4">Popular Games</h2>
-						<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+						<div className="grid grid-rows-1 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
 							{popularGames.map((game) => (
 								<GameCard key={game.id} game={game} view="grid" />
 							))}
@@ -97,7 +97,7 @@ export default function Home() {
 					{/* Top Games Section */}
 					<div className="mt-8">
 						<h2 className="text-xl font-semibold mb-4">Top Games</h2>
-						<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+						<div className="grid grid-cols-5 overflow-scroll gap-4">
 							{topGames.map((game) => (
 								<GameCard key={game.id} game={game} view="grid" />
 							))}
@@ -114,7 +114,7 @@ export default function Home() {
 					{/* New Games Section */}
 					<div className="mt-8">
 						<h2 className="text-xl font-semibold mb-4">New Games</h2>
-						<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+						<div className="grid grid-cols-5 overflow-scroll gap-4">
 							{newGames.map((game) => (
 								<GameCard key={game.id} game={game} view="grid" />
 							))}

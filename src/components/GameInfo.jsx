@@ -37,6 +37,14 @@ export default function GameInfo({ game, stores }) {
 					</span>
 				</div>
 				<div>
+					<p className="font-semibold text-primary">Metacritic Score</p>
+					<span>
+						{game.metacritic
+							? game.metacritic
+							: "-"}
+					</span>
+				</div>
+				<div>
 					<p className="font-semibold text-primary">Platform</p>
 					<span>
 						{game.platforms.length
@@ -54,16 +62,7 @@ export default function GameInfo({ game, stores }) {
 							: "-"}
 					</span>
 				</div>
-				<div>
-					<p className="font-semibold text-primary">Website</p>
-					{game.website ? (
-						<Link to={game.website} target="_blank" className="underline">
-							{game.website}
-						</Link>
-					) : (
-						"-"
-					)}
-				</div>
+
 				<div className="md:col-span-2">
 					<p className="font-semibold text-primary">Tags</p>
 					<span>
@@ -73,21 +72,14 @@ export default function GameInfo({ game, stores }) {
 					</span>
 				</div>
 				<div className="md:col-span-2">
-					<p className="font-semibold text-primary">Available in</p>
-					<span>
-						{game.stores.length
-							? game.stores.map((store, index) => (
-									<Link
-										// to={stores[index].url}
-										key={store.store.id}
-										target="_blank"
-									>
-										<span className="underline">{store.store.name}</span>
-										{index < game.stores.length - 1 && ", "}
-									</Link>
-							  ))
-							: "-"}
-					</span>
+					<p className="font-semibold text-primary">Website</p>
+					{game.website ? (
+						<Link to={game.website} target="_blank" className="underline">
+							{game.website}
+						</Link>
+					) : (
+						"-"
+					)}
 				</div>
 			</div>
 		</>

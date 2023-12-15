@@ -14,6 +14,7 @@ import { Link, useParams } from "react-router-dom";
 import GameDetailSkeleton from "../components/GameDetailSkeleton";
 import GameInfo from "../components/GameInfo";
 import Image from "../components/Image";
+import StoreLink from "../components/StoreLink";
 import Title from "../components/Title";
 
 export default function Game() {
@@ -113,6 +114,25 @@ export default function Game() {
 										</div>
 									</div>
 									<div className="col-span-9 space-y-4 md:col-span-3">
+										{game && (
+											<div className="my-8">
+												<span className="text-2xl font-bold text-primary">
+													Available in
+												</span>
+												<div>
+													{game.stores.length
+														? game.stores.map((store, index) => (
+																<StoreLink
+																	key={store.store.id}
+																	stores={stores}
+																	store={store}
+																	index={index}
+																/>
+														  ))
+														: "-"}
+												</div>
+											</div>
+										)}
 										{screenshots.length > 0 && (
 											<div className="my-8">
 												<span className="text-2xl font-bold text-primary">
