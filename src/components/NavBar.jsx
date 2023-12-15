@@ -11,7 +11,7 @@ export default function NavBar() {
 	};
 
 	return (
-		<div className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+		<div className="sticky top-0 z-50 w-full border-b bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/50">
 			<div className="container flex items-center h-14">
 				<div className="flex mr-2 md:hidden">
 					<NavSheet />

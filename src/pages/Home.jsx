@@ -1,10 +1,12 @@
 import NavBar from "@/components/NavBar";
+import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import GameCard from "../components/GameCard";
 import { GameCardSkeleton } from "../components/GameCardSkeleton";
 import Title from "../components/Title";
 export default function Home() {
-	const size = 10;
+	const size = 5;
 	const [articles, setArticles] = useState([]);
 	const [popularGames, setPopularGames] = useState([]);
 	const [topGames, setTopGames] = useState([]);
@@ -74,9 +76,13 @@ export default function Home() {
 				<div className="px-8 md:px-16">
 					<Title text="H320 Gamelist" />
 					<span className="font-semibold text-md">
-						A simple game list website.
+						Find all the games.
 					</span>
-
+					<div className="mt-2">
+						<Link to="/browse">
+							<Button>Browse games</Button>
+						</Link>
+					</div>
 					{/* Popular Games Section */}
 					<div className="mt-8">
 						<h2 className="text-xl font-semibold mb-4">Popular Games</h2>

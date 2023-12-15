@@ -16,6 +16,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 
+import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
 
@@ -100,7 +101,7 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 	};
 
 	return (
-		<div className="flex">
+		<Card className="flex sticky left-0 top-[70px] z-50 p-4">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
@@ -113,7 +114,7 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 								name="view"
 								render={({ field }) => (
 									<FormItem>
-										{/* <FormLabel>Genres</FormLabel> */}
+										<FormLabel>Filters</FormLabel>
 										<FilterOptions
 											title="Genres"
 											options={
@@ -256,6 +257,6 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 					</div>
 				</form>
 			</Form>
-		</div>
+		</Card>
 	);
 }
