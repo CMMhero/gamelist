@@ -89,12 +89,11 @@ export default function GameCard({ game, view }) {
 											return (
 												IconComponent && (
 													<>
-														<TooltipProvider>
+														<TooltipProvider key={platform.platform.id}>
 															<Tooltip>
 																<TooltipTrigger>
 																	<IconComponent
 																		className="mr-1"
-																		key={platform.platform.id}
 																	/>
 																</TooltipTrigger>
 																<TooltipContent>
@@ -181,12 +180,11 @@ export default function GameCard({ game, view }) {
 												return (
 													IconComponent && (
 														<>
-															<TooltipProvider>
+															<TooltipProvider key={platform.platform.id}>
 																<Tooltip>
 																	<TooltipTrigger>
 																		<IconComponent
 																			className="mr-1"
-																			key={platform.platform.id}
 																		/>
 																	</TooltipTrigger>
 																	<TooltipContent>

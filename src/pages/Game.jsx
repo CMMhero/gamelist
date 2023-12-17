@@ -1,21 +1,9 @@
 import NavBar from "@/components/NavBar";
-import {
-	AlertDialog,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogHeader,
-	AlertDialogTitle,
-	AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { useEffect, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import GameDetail from "../components/GameDetail";
 import GameDetailSkeleton from "../components/GameDetailSkeleton";
-import GameInfo from "../components/GameInfo";
 import Image from "../components/Image";
-import StoreLink from "../components/StoreLink";
-import Title from "../components/Title";
 
 export default function Game() {
 	const params = useParams();
@@ -76,6 +64,11 @@ export default function Game() {
 			}
 		};
 
+		setGame(null);
+		setScreenshots(null);
+		setTrailers(null);
+		setStores(null);
+		
 		fetchGame();
 		fetchScreenshots();
 		fetchTrailers();
@@ -99,112 +92,7 @@ export default function Game() {
 					<div className="px-8 md:px-16">
 						{game && screenshots && trailers && stores ? (
 							<>
-								<Title text={game.name} />
-								<div className="grid grid-cols-9 text-sm gap-x-8">
-									<div className="col-span-9 space-y-4 md:col-span-6">
-										<div className="my-8">
-											<span className="text-2xl font-bold text-primary">
-												About
-											</span>
-											<div
-												className="my-4 space-y-4"
-												dangerouslySetInnerHTML={{ __html: game.description }}
-											></div>
-											<GameInfo game={game} stores={stores} />
-										</div>
-									</div>
-									<div className="col-span-9 space-y-4 md:col-span-3">
-										{game && (
-											<div className="my-8">
-												<span className="text-2xl font-bold text-primary">
-													Available in
-												</span>
-												<div>
-													{game.stores.length
-														? game.stores.map((store, index) => (
-																<StoreLink
-																	key={store.store.id}
-																	stores={stores}
-																	store={store}
-																	index={index}
-																/>
-														  ))
-														: "-"}
-												</div>
-											</div>
-										)}
-										{screenshots.length > 0 && (
-											<div className="my-8">
-												<span className="text-2xl font-bold text-primary">
-													Screenshots
-												</span>
-												<div className="grid grid-cols-1 gap-4 my-4 lg:grid-cols-2">
-													{screenshots.map((screenshot) => (
-														<>
-															<AlertDialog>
-																<AlertDialogTrigger>
-																	<div className="w-full h-full md:h-28">
-																		<Image
-																			src={screenshot.image}
-																			key={screenshot.id}
-																			className="object-cover w-full h-full rounded-md"
-																			alt={`Screenshot ${screenshot.id}`}
-																		/>
-																	</div>
-																</AlertDialogTrigger>
-																<AlertDialogContent className="rounded-lg w-[95%] sm:w-[75%] md:w-[60%] lg:w-[50%]">
-																	<AlertDialogHeader>
-																		<AlertDialogTitle>
-																			<div className="flex justify-between flex-auto">
-																				Screenshot
-																				<AlertDialogCancel>
-																					<AiOutlineClose />
-																				</AlertDialogCancel>
-																			</div>
-																		</AlertDialogTitle>
-																		<AlertDialogDescription>
-																			<Image
-																				src={screenshot.image}
-																				key={screenshot.id}
-																				className="w-full h-auto rounded-md"
-																				alt={`Screenshot ${screenshot.id}`}
-																			/>
-																		</AlertDialogDescription>
-																	</AlertDialogHeader>
-																</AlertDialogContent>
-															</AlertDialog>
-														</>
-													))}
-												</div>
-											</div>
-										)}
-										{trailers.length > 0 && (
-											<div className="my-8">
-												<span className="text-2xl font-bold text-primary">
-													Trailers
-												</span>
-												<div className="grid grid-cols-1 gap-4 my-4 lg:grid-cols-2">
-													{trailers.map((trailer) => (
-														<>
-															<Link
-																to={trailer.data.max}
-																key={trailer.id}
-																target="_blank"
-																rel="noopener noreferrer"
-															>
-																<Image
-																	className="rounded-md"
-																	src={trailer.preview}
-																	alt={trailer.name}
-																/>
-															</Link>
-														</>
-													))}
-												</div>
-											</div>
-										)}
-									</div>
-								</div>
+								<GameDetail game={game} screenshots={screenshots} trailers={trailers} stores={stores}/>
 							</>
 						) : (
 							<>

@@ -19,10 +19,10 @@ export default function StoreLink({ stores, store, index }) {
 
 	return (
 		<Link to={stores[index].url} target="_blank">
-			<Button className="m-1">
+			<Button className="w-full font-normal">
 				<div className="flex justify-center items-center">
 				{IconComponent && <IconComponent className="mr-1"/>}
-				<span className="">{store.store.name}</span>
+				<span>{store.store.name}</span>
 				</div>
 			</Button>
 		</Link>

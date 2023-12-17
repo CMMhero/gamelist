@@ -1,5 +1,6 @@
 import NavBar from "@/components/NavBar";
 import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import GameCard from "../components/GameCard";
@@ -14,10 +15,12 @@ export default function Home() {
 
 	useEffect(() => {
 		const fetchArticles = async () => {
+			const corsAnywhereUrl = "https://cors-anywhere.herokuapp.com/";
+			const apiUrl =
+				"https://www.gamespot.com/api/articles/?api_key=3a96b80dc9ffb7244341a2e26e85e920ab50e351&format=json";
+
 			try {
-				const response = await fetch(
-					`https://www.gamespot.com/api/articles/?api_key=3a96b80dc9ffb7244341a2e26e85e920ab50e351&format=json`
-				);
+				const response = await fetch(`${corsAnywhereUrl}${apiUrl}`);
 				const data = await response.json();
 				setArticles(data.results);
 				console.log(data);
@@ -57,13 +60,13 @@ export default function Home() {
 				);
 				const data = await response.json();
 				setNewGames(data.results);
-				console.log(data);
+				// console.log(data);
 			} catch (error) {
 				console.error("Error fetching game: ", error);
 			}
 		};
 
-		// fetchArticles();
+		fetchArticles();
 		fetchPopularGames();
 		fetchTopGames();
 		fetchNewGames();
@@ -76,11 +79,13 @@ export default function Home() {
 				<div className="px-8 md:px-16">
 					<Title text="H320 Gamelist" />
 					<span className="font-semibold text-md">
-						Find all the games.
+						Discover your next gaming adventure with H320 Gamelist.
 					</span>
 					<div className="mt-2">
 						<Link to="/browse">
-							<Button>Browse games</Button>
+							<Button>
+								Browse games <ChevronRight />
+							</Button>
 						</Link>
 					</div>
 					{/* Popular Games Section */}
@@ -103,7 +108,7 @@ export default function Home() {
 					{/* Top Games Section */}
 					<div className="mt-8">
 						<h2 className="text-xl font-semibold mb-4">Top Games</h2>
-						<div className="grid grid-cols-5 overflow-scroll gap-4">
+						<div className="grid grid-rows-1 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
 							{topGames.map((game) => (
 								<GameCard key={game.id} game={game} view="grid" />
 							))}
@@ -120,7 +125,7 @@ export default function Home() {
 					{/* New Games Section */}
 					<div className="mt-8">
 						<h2 className="text-xl font-semibold mb-4">New Games</h2>
-						<div className="grid grid-cols-5 overflow-scroll gap-4">
+						<div className="grid grid-rows-1 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
 							{newGames.map((game) => (
 								<GameCard key={game.id} game={game} view="grid" />
 							))}
