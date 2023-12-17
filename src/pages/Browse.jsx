@@ -23,7 +23,7 @@ export default function Browse() {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page=${page}
+					`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_API_KEY}&page=${page}
 					&ordering=${orderBy}
 					${platforms.length ? `&parent_platforms=${platforms.join(", ")}` : ``}
 					${genres.length ? `&genres=${genres.join(",")}` : ``}

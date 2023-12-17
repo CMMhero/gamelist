@@ -36,7 +36,7 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 		const fetchGenres = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/genres?key=dc6f3f19206d43078b51b87ab10705b1`
+					`https://api.rawg.io/api/genres?key=${import.meta.env.VITE_RAWG_API_KEY}`
 				);
 				const data = await response.json();
 				setGenres(data.results);
@@ -49,7 +49,7 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 		const fetchPlatforms = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/platforms/lists/parents?key=dc6f3f19206d43078b51b87ab10705b1`
+					`https://api.rawg.io/api/platforms/lists/parents?key=${import.meta.env.VITE_RAWG_API_KEY}`
 				);
 				const data = await response.json();
 				setPlatforms(data.results);
@@ -62,7 +62,7 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 		const fetchStores = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/stores?key=dc6f3f19206d43078b51b87ab10705b1`
+					`https://api.rawg.io/api/stores?key=${import.meta.env.VITE_RAWG_API_KEY}`
 				);
 				const data = await response.json();
 				setStores(data.results);

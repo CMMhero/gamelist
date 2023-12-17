@@ -16,7 +16,7 @@ export default function Game() {
 		const fetchGame = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games/${params.id}?key=dc6f3f19206d43078b51b87ab10705b1`
+					`https://api.rawg.io/api/games/${params.id}?key=${import.meta.env.VITE_RAWG_API_KEY}`
 				);
 				const data = await response.json();
 				setGame(data);
@@ -28,7 +28,7 @@ export default function Game() {
 		const fetchScreenshots = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games/${params.id}/screenshots?key=dc6f3f19206d43078b51b87ab10705b1`
+					`https://api.rawg.io/api/games/${params.id}/screenshots?key=${import.meta.env.VITE_RAWG_API_KEY}`
 				);
 				const data = await response.json();
 				setScreenshots(data.results);
@@ -41,7 +41,7 @@ export default function Game() {
 		const fetchTrailers = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games/${params.id}/movies?key=dc6f3f19206d43078b51b87ab10705b1`
+					`https://api.rawg.io/api/games/${params.id}/movies?key=${import.meta.env.VITE_RAWG_API_KEY}`
 				);
 				const data = await response.json();
 				setTrailers(data.results);
@@ -54,7 +54,7 @@ export default function Game() {
 		const fetchStores = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games/${params.id}/stores?key=dc6f3f19206d43078b51b87ab10705b1`
+					`https://api.rawg.io/api/games/${params.id}/stores?key=${import.meta.env.VITE_RAWG_API_KEY}`
 				);
 				const data = await response.json();
 				setStores(data.results);

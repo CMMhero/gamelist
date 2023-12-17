@@ -33,7 +33,7 @@ export default function SearchBox() {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&search=${searchQuery}&page_size=10&search_precise`
+					`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_API_KEY}&search=${searchQuery}&page_size=10&search_precise`
 				);
 				const data = await response.json();
 				// console.log(data.results);

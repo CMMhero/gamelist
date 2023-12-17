@@ -31,7 +31,7 @@ export default function Home() {
 		const fetchPopularGames = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page_size=${size}&ordering=popularity`
+					`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_API_KEY}&page_size=${size}&ordering=popularity`
 				);
 				const data = await response.json();
 				setPopularGames(data.results);
@@ -43,7 +43,7 @@ export default function Home() {
 		const fetchTopGames = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page_size=${size}&ordering=-metacritic`
+					`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_API_KEY}&page_size=${size}&ordering=-metacritic`
 				);
 				const data = await response.json();
 				setTopGames(data.results);
@@ -55,7 +55,7 @@ export default function Home() {
 		const fetchNewGames = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/games?key=dc6f3f19206d43078b51b87ab10705b1&page_size=${size}&ordering=released`
+					`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_API_KEY}&page_size=${size}&ordering=released`
 				);
 				const data = await response.json();
 				setNewGames(data.results);
