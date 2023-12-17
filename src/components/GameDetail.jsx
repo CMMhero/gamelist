@@ -1,11 +1,11 @@
 import {
-	AlertDialog,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogHeader,
-	AlertDialogTitle,
-	AlertDialogTrigger,
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";

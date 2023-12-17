@@ -15,12 +15,11 @@ export default function Home() {
 
 	useEffect(() => {
 		const fetchArticles = async () => {
-			const corsAnywhereUrl = "https://cors-anywhere.herokuapp.com/";
-			const apiUrl =
+			const url =
 				"https://www.gamespot.com/api/articles/?api_key=3a96b80dc9ffb7244341a2e26e85e920ab50e351&format=json";
 
 			try {
-				const response = await fetch(`${corsAnywhereUrl}${apiUrl}`);
+				const response = await fetch(url);
 				const data = await response.json();
 				setArticles(data.results);
 				console.log(data);
@@ -66,7 +65,7 @@ export default function Home() {
 			}
 		};
 
-		fetchArticles();
+		// fetchArticles();
 		fetchPopularGames();
 		fetchTopGames();
 		fetchNewGames();
