@@ -110,7 +110,7 @@ export default function Home() {
 						<div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
 							<div className="grid gap-1 mb-4">
 								<h1 className="text-xl font-bold">Popular Games</h1>
-								<p className="text-gray-500 dark:text-gray-400">
+								<p className="text-foreground/60">
 									Discover the most popular games.
 								</p>
 							</div>
@@ -139,7 +139,7 @@ export default function Home() {
 						<div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
 							<div className="grid gap-1 mb-4">
 								<h1 className="text-xl font-bold">Top Rated Games</h1>
-								<p className="text-gray-500 dark:text-gray-400">
+								<p className="text-foreground/60">
 									Discover the highest rated games.
 								</p>
 							</div>
@@ -168,7 +168,7 @@ export default function Home() {
 						<div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
 							<div className="grid gap-1 mb-4">
 								<h1 className="text-xl font-bold">New Games</h1>
-								<p className="text-gray-500 dark:text-gray-400">
+								<p className="text-foreground/60">
 									Discover the latest released games.
 								</p>
 							</div>
