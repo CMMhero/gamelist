@@ -23,7 +23,14 @@ import { useEffect, useState } from "react";
 import { Grid2X2, Grid3X3, TableProperties } from "lucide-react";
 import FilterOptions from "./FilterOptions";
 
-export default function Filter({ onFilterChange, onViewChange, onGenreChange, onPlatformChange, onStoreChange }) {
+export default function Filter({
+	ordering,
+	onFilterChange,
+	onViewChange,
+	onGenreChange,
+	onPlatformChange,
+	onStoreChange,
+}) {
 	const form = useForm();
 	const [genres, setGenres] = useState(null);
 	// const [tags, setTags] = useState(null);
@@ -36,7 +43,9 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 		const fetchGenres = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/genres?key=${import.meta.env.VITE_RAWG_API_KEY}`
+					`https://api.rawg.io/api/genres?key=${
+						import.meta.env.VITE_RAWG_API_KEY
+					}`
 				);
 				const data = await response.json();
 				setGenres(data.results);
@@ -49,7 +58,9 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 		const fetchPlatforms = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/platforms/lists/parents?key=${import.meta.env.VITE_RAWG_API_KEY}`
+					`https://api.rawg.io/api/platforms/lists/parents?key=${
+						import.meta.env.VITE_RAWG_API_KEY
+					}`
 				);
 				const data = await response.json();
 				setPlatforms(data.results);
@@ -62,7 +73,9 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 		const fetchStores = async () => {
 			try {
 				const response = await fetch(
-					`https://api.rawg.io/api/stores?key=${import.meta.env.VITE_RAWG_API_KEY}`
+					`https://api.rawg.io/api/stores?key=${
+						import.meta.env.VITE_RAWG_API_KEY
+					}`
 				);
 				const data = await response.json();
 				setStores(data.results);
@@ -200,14 +213,16 @@ export default function Filter({ onFilterChange, onViewChange, onGenreChange, on
 										<FormLabel>Order by</FormLabel>
 										<Select
 											onValueChange={(value) => {
+												if (value == ordering) return;
+												
 												field.onChange(value);
 												handleFilterChange(value);
 											}}
-											defaultValue="popularity"
+											defaultValue={ordering}
 										>
 											<FormControl>
 												<SelectTrigger>
-													<SelectValue placeholder="Popularity" />
+													<SelectValue placeholder={ordering} />
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>

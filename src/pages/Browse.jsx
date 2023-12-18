@@ -2,14 +2,17 @@ import GameCard from "@/components/GameCard";
 import { GameCardSkeleton } from "@/components/GameCardSkeleton";
 import NavBar from "@/components/NavBar";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Filter from "../components/Filter";
 import Title from "../components/Title";
 
 export default function Browse() {
+	const navigate = useNavigate();
+	const params = useParams();
 	const [games, setGames] = useState([]);
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(false);
-	const [orderBy, setOrderBy] = useState("popularity");
+	const [orderBy, setOrderBy] = useState(params.ordering || "popularity");
 	const [genres, setGenres] = useState([]);
 	const [platforms, setPlatforms] = useState([]);
 	const [stores, setStores] = useState([]);
@@ -57,6 +60,7 @@ export default function Browse() {
 	}, [page, loading, orderBy, platforms, genres, stores]);
 
 	const handleFilterChange = (value) => {
+		navigate(`/browse/${value}`);
 		setGames([]);
 		setPage(1);
 		setOrderBy(value);
@@ -90,6 +94,7 @@ export default function Browse() {
 				<div className="px-4 md:px-16">
 					<Title text="Top Games" />
 					<Filter
+						ordering={orderBy}
 						onFilterChange={handleFilterChange}
 						onViewChange={handleViewChange}
 						onGenreChange={handleGenreChange}

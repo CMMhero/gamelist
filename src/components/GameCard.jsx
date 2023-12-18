@@ -64,7 +64,7 @@ export default function GameCard({ game, view }) {
 											alt={game.name}
 										/>
 									) : (
-										<div className="bg-primary w-full h-full items-center justify-center flex text-center">
+										<div className="bg-primary w-full h-full items-center justify-center flex text-center p-2">
 											<span className="text-primary-foreground">
 												{game.name}
 											</span>
@@ -162,7 +162,7 @@ export default function GameCard({ game, view }) {
 										alt={game.name}
 									/>
 								) : (
-									<div className="bg-primary w-full h-full items-center justify-center flex text-center">
+									<div className="bg-primary w-full h-full items-center justify-center flex text-center p-2">
 										<span className="text-primary-foreground">{game.name}</span>
 									</div>
 								)}
