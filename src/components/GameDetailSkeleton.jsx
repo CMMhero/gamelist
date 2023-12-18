@@ -81,7 +81,7 @@ export default function GameDetailSkeleton() {
 							<Skeleton className="h-28 w-full" />
 						</div>
 					</div>
-					<div className="my-8">
+					{/* <div className="my-8">
 						<Skeleton className="h-6 w-32" />
 						<div className="grid grid-cols-1 gap-4 my-4 lg:grid-cols-2">
 							<Skeleton className="h-28 w-full" />
@@ -89,7 +89,7 @@ export default function GameDetailSkeleton() {
 							<Skeleton className="h-28 w-full" />
 							<Skeleton className="h-28 w-full" />
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</>

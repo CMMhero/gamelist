@@ -1,14 +1,9 @@
 import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
+	AlertDialog,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { AiOutlineClose } from "react-icons/ai";
-import { Link } from "react-router-dom";
 import GameInfo from "./GameInfo";
 import Image from "./Image";
 import StoreLink from "./StoreLink";
@@ -55,62 +50,66 @@ export default function GameDetail({ game, stores, screenshots, trailers }) {
 							</span>
 							<div className="grid grid-cols-1 gap-4 my-4 lg:grid-cols-2">
 								{screenshots.map((screenshot) => (
-									<AlertDialog key={screenshot.id}>
-										<AlertDialogTrigger>
-											<div className="w-full h-full md:h-28">
-												<Image
-													className="object-cover w-full h-full rounded-md"
-													alt={`Screenshot ${screenshot.id}`}
-													src={screenshot.image}
-												/>
-											</div>
-										</AlertDialogTrigger>
-										<AlertDialogContent className="rounded-lg w-[95%] sm:w-[75%] md:w-[60%] lg:w-[50%]">
-											<AlertDialogHeader>
-												<AlertDialogTitle>
-													<div className="flex justify-between flex-auto">
-														Screenshot
-														<AlertDialogCancel>
-															<AiOutlineClose />
-														</AlertDialogCancel>
+									<>
+										<div className="w-full h-full md:hidden">
+											<Image
+												src={screenshot.image}
+												key={screenshot.id}
+												className="w-full h-auto rounded-md"
+												alt={`Screenshot ${screenshot.id}`}
+											/>
+										</div>
+										<div className="hidden md:flex">
+											<AlertDialog key={screenshot.id}>
+												<AlertDialogTrigger>
+													<div className="w-full h-auto">
+														<Image
+															src={screenshot.image}
+															key={screenshot.id}
+															className="w-full h-auto rounded-md"
+															alt={`Screenshot ${screenshot.id}`}
+														/>
 													</div>
-												</AlertDialogTitle>
-												<AlertDialogDescription>
-													<Image
-														src={screenshot.image}
-														key={screenshot.id}
-														className="w-full h-auto rounded-md"
-														alt={`Screenshot ${screenshot.id}`}
-													/>
-												</AlertDialogDescription>
-											</AlertDialogHeader>
-										</AlertDialogContent>
-									</AlertDialog>
+												</AlertDialogTrigger>
+												<AlertDialogContent className="p-0 rounded-lg w-[75%] sm:w-[75%] md:w-[60%] lg:w-[50%] h-fit">
+													<AlertDialogCancel className="w-fit h-fit p-0 left-0 top-0">
+														<Image
+															src={screenshot.image}
+															key={screenshot.id}
+															className="w-full h-auto rounded-md"
+															alt={`Screenshot ${screenshot.id}`}
+														/>
+													</AlertDialogCancel>
+												</AlertDialogContent>
+											</AlertDialog>
+										</div>
+									</>
 								))}
 							</div>
 						</div>
 					)}
-					{trailers.length > 0 && (
+					{/* {trailers.length > 0 && (
 						<div className="my-8">
 							<span className="text-2xl font-bold text-primary">Trailers</span>
 							<div className="grid grid-cols-1 gap-4 my-4 lg:grid-cols-2">
 								{trailers.map((trailer) => (
-									<Link
-										to={trailer.data.max}
-										target="_blank"
+									<div
 										key={trailer.id}
-										rel="noopener noreferrer"
+										className="w-full h-full rounded-md bg-background/50"
 									>
-										<Image
-											className="rounded-md"
-											src={trailer.preview}
-											alt={trailer.name}
+										<iframe
+											className="w-full h-fit object-cover rounded-md"
+											key={trailer.id}
+											src={trailer.data.max}
+											allowFullScreen="true"
+											autoPlay="false"
+											title={trailer.id}
 										/>
-									</Link>
+									</div>
 								))}
 							</div>
 						</div>
-					)}
+					)} */}
 				</div>
 			</div>
 		</>
