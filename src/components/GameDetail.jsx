@@ -66,17 +66,17 @@ export default function GameDetail({ game, stores, screenshots, trailers }) {
 														<Image
 															src={screenshot.image}
 															key={screenshot.id}
-															className="w-full h-auto rounded-md"
+															className="w-full h-auto rounded-md object-cover"
 															alt={`Screenshot ${screenshot.id}`}
 														/>
 													</div>
 												</AlertDialogTrigger>
 												<AlertDialogContent className="p-0 rounded-lg w-[75%] sm:w-[75%] md:w-[60%] lg:w-[50%] h-fit">
-													<AlertDialogCancel className="w-fit h-fit p-0 left-0 top-0">
+													<AlertDialogCancel className="w-full h-fit p-0 left-0 top-0">
 														<Image
 															src={screenshot.image}
 															key={screenshot.id}
-															className="w-full h-auto rounded-md"
+															className="w-full h-auto rounded-md object-cover"
 															alt={`Screenshot ${screenshot.id}`}
 														/>
 													</AlertDialogCancel>
