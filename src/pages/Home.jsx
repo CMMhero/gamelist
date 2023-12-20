@@ -7,26 +7,11 @@ import GameCard from "../components/GameCard";
 import { GameCardSkeleton } from "../components/GameCardSkeleton";
 export default function Home() {
 	const size = 5;
-	const [articles, setArticles] = useState([]);
 	const [popularGames, setPopularGames] = useState([]);
 	const [topGames, setTopGames] = useState([]);
 	const [newGames, setNewGames] = useState([]);
 
 	useEffect(() => {
-		const fetchArticles = async () => {
-			const url =
-				"https://www.gamespot.com/api/articles/?api_key=3a96b80dc9ffb7244341a2e26e85e920ab50e351&format=json";
-
-			try {
-				const response = await fetch(url);
-				const data = await response.json();
-				setArticles(data.results);
-				console.log(data);
-			} catch (error) {
-				console.error("Error fetching games: ", error);
-			}
-		};
-
 		const fetchPopularGames = async () => {
 			try {
 				const response = await fetch(
@@ -36,7 +21,6 @@ export default function Home() {
 				);
 				const data = await response.json();
 				setPopularGames(data.results);
-				// console.log(data);
 			} catch (error) {
 				console.error("Error fetching game: ", error);
 			}
@@ -50,7 +34,6 @@ export default function Home() {
 				);
 				const data = await response.json();
 				setTopGames(data.results);
-				// console.log(data);
 			} catch (error) {
 				console.error("Error fetching game: ", error);
 			}
@@ -64,13 +47,11 @@ export default function Home() {
 				);
 				const data = await response.json();
 				setNewGames(data.results);
-				// console.log(data);
 			} catch (error) {
 				console.error("Error fetching game: ", error);
 			}
 		};
 
-		// fetchArticles();
 		fetchPopularGames();
 		fetchTopGames();
 		fetchNewGames();
@@ -85,7 +66,7 @@ export default function Home() {
 						<div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
 							<div className="flex flex-col justify-center space-y-4">
 								<div className="space-y-2">
-									<div className="bg-gradient-to-r to-fuchsia-500 from-cyan-500 bg-clip-text text-transparent w-fit self-center  py-2">
+									<div className="self-center py-2 text-transparent bg-gradient-to-r to-fuchsia-500 from-cyan-500 bg-clip-text w-fit">
 										<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
 											H320 Gamelist
 										</h1>
@@ -105,9 +86,8 @@ export default function Home() {
 							</div>
 						</div>
 					</section>
-					{/* Popular Games Section */}
 					<div className="mt-8">
-						<div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+						<div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-8">
 							<div className="grid gap-1 mb-4">
 								<h1 className="text-xl font-bold">Popular Games</h1>
 								<p className="text-foreground/60">
@@ -120,7 +100,7 @@ export default function Home() {
 								</Button>
 							</Link>
 						</div>
-						<div className="grid grid-rows-1 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+						<div className="grid grid-cols-2 grid-rows-1 gap-4 md:grid-cols-4 lg:grid-cols-5">
 							{popularGames.map((game) => (
 								<GameCard key={game.id} game={game} view="grid" />
 							))}
@@ -134,9 +114,8 @@ export default function Home() {
 						</div>
 					</div>
 
-					{/* Top Games Section */}
 					<div className="mt-8">
-						<div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+						<div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-8">
 							<div className="grid gap-1 mb-4">
 								<h1 className="text-xl font-bold">Top Rated Games</h1>
 								<p className="text-foreground/60">
@@ -149,7 +128,7 @@ export default function Home() {
 								</Button>
 							</Link>
 						</div>
-						<div className="grid grid-rows-1 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+						<div className="grid grid-cols-2 grid-rows-1 gap-4 md:grid-cols-4 lg:grid-cols-5">
 							{topGames.map((game) => (
 								<GameCard key={game.id} game={game} view="grid" />
 							))}
@@ -163,9 +142,8 @@ export default function Home() {
 						</div>
 					</div>
 
-					{/* New Games Section */}
 					<div className="mt-8">
-						<div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+						<div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-8">
 							<div className="grid gap-1 mb-4">
 								<h1 className="text-xl font-bold">New Games</h1>
 								<p className="text-foreground/60">
@@ -178,7 +156,7 @@ export default function Home() {
 								</Button>
 							</Link>
 						</div>
-						<div className="grid grid-rows-1 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+						<div className="grid grid-cols-2 grid-rows-1 gap-4 md:grid-cols-4 lg:grid-cols-5">
 							{newGames.map((game) => (
 								<GameCard key={game.id} game={game} view="grid" />
 							))}

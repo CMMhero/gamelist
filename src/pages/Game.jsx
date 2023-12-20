@@ -7,10 +7,10 @@ import Image from "../components/Image";
 
 export default function Game() {
 	const params = useParams();
-	const [game, setGame] = useState(null); // Initialize as null
-	const [screenshots, setScreenshots] = useState(null); // Initialize as null
-	const [trailers, setTrailers] = useState(null); // Initialize as null
-	const [stores, setStores] = useState(null); // Initialize as null
+	const [game, setGame] = useState(null);
+	const [screenshots, setScreenshots] = useState(null);
+	const [trailers, setTrailers] = useState(null);
+	const [stores, setStores] = useState(null);
 
 	useEffect(() => {
 		const fetchGame = async () => {
@@ -32,7 +32,6 @@ export default function Game() {
 				);
 				const data = await response.json();
 				setScreenshots(data.results);
-				// console.log(data.results)
 			} catch (error) {
 				console.error("Error fetching screenshots: ", error);
 			}
@@ -45,7 +44,6 @@ export default function Game() {
 				);
 				const data = await response.json();
 				setTrailers(data.results);
-				// console.log(data.results);
 			} catch (error) {
 				console.error("Error fetching trailers: ", error);
 			}
@@ -58,7 +56,6 @@ export default function Game() {
 				);
 				const data = await response.json();
 				setStores(data.results);
-				// console.log(data.results);
 			} catch (error) {
 				console.error("Error fetching stores: ", error);
 			}

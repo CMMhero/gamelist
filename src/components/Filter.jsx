@@ -33,10 +33,7 @@ export default function Filter({
 }) {
 	const form = useForm();
 	const [genres, setGenres] = useState(null);
-	// const [tags, setTags] = useState(null);
 	const [platforms, setPlatforms] = useState(null);
-	// const [publishers, setPublishers] = useState(null);
-	// const [developers, setDevelopers] = useState(null);
 	const [stores, setStores] = useState(null);
 
 	useEffect(() => {
@@ -49,7 +46,6 @@ export default function Filter({
 				);
 				const data = await response.json();
 				setGenres(data.results);
-				// console.log(data.results);
 			} catch (error) {
 				console.error("Error fetching genres: ", error);
 			}
@@ -64,7 +60,6 @@ export default function Filter({
 				);
 				const data = await response.json();
 				setPlatforms(data.results);
-				// console.log(data);
 			} catch (error) {
 				console.error("Error fetching platforms: ", error);
 			}
@@ -79,7 +74,6 @@ export default function Filter({
 				);
 				const data = await response.json();
 				setStores(data.results);
-				// console.log(data);
 			} catch (error) {
 				console.error("Error fetching stores: ", error);
 			}
@@ -120,7 +114,7 @@ export default function Filter({
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="flex flex-col justify-between w-full gap-4 lg:flex-row"
 				>
-					<div className="flex items-end gap-4 overflow-scroll">
+					<div className="flex items-end gap-4 overflow-auto">
 						<div>
 							<FormField
 								control={form.control}
@@ -154,7 +148,6 @@ export default function Filter({
 								name="view"
 								render={({ field }) => (
 									<FormItem>
-										{/* <FormLabel>Platforms</FormLabel> */}
 										<FilterOptions
 											title="Platforms"
 											options={
@@ -181,7 +174,6 @@ export default function Filter({
 								name="view"
 								render={({ field }) => (
 									<FormItem>
-										{/* <FormLabel>Stores</FormLabel> */}
 										<FilterOptions
 											title="Stores"
 											options={

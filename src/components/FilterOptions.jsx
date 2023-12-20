@@ -1,4 +1,3 @@
-// DataTableFacetedFilter.jsx
 import { CheckIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -49,10 +48,10 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 						{title}
 						{selectedValues.size > 0 && (
 							<>
-								<Separator orientation="vertical" className="mx-2 h-4" />
+								<Separator orientation="vertical" className="h-4 mx-2" />
 								<Badge
 									variant="default"
-									className="rounded-sm px-1 font-normal lg:hidden"
+									className="px-1 font-normal rounded-sm lg:hidden"
 								>
 									{selectedValues.size}
 								</Badge>
@@ -60,7 +59,7 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 									{selectedValues.size > 1 ? (
 										<Badge
 											variant="default"
-											className="rounded-sm px-1 font-normal"
+											className="px-1 font-normal rounded-sm"
 										>
 											{selectedValues.size} selected
 										</Badge>
@@ -71,7 +70,7 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 												<Badge
 													variant="default"
 													key={option.value}
-													className="rounded-sm px-1 font-normal"
+													className="px-1 font-normal rounded-sm"
 												>
 													{option.name}
 												</Badge>
@@ -116,7 +115,7 @@ export default function FilterOptions({ title, options, onFilterChange }) {
 													: "opacity-50 [&_svg]:invisible"
 											}`}
 										>
-											<CheckIcon className="h-4 w-4" />
+											<CheckIcon className="w-4 h-4" />
 										</div>
 										<span>{option.name}</span>
 									</CommandItem>

@@ -29,14 +29,12 @@ export default function SearchBox() {
 	}, []);
 
 	useEffect(() => {
-		// Fetch data based on searchQuery and update searchResults
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
 					`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_API_KEY}&search=${searchQuery}&page_size=10&search_precise`
 				);
 				const data = await response.json();
-				// console.log(data.results);
 				setSearchResults(data.results || []);
 			} catch (error) {
 				console.error("Error fetching data: ", error);
