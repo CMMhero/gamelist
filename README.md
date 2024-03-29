@@ -4,6 +4,7 @@ A simple game list website built using vite, react, tailwindcss, and shadcn/ui
 Created by
 Christopher Matthew Marvelio (00000043324)
 
+
 ## Features
 - Searchable game list
 - Order by and filter games
