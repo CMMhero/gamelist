@@ -29,7 +29,7 @@ export default function GameDetail({ game, stores, screenshots, trailers }) {
 							<span className="text-2xl font-bold text-primary">
 								Available in
 							</span>
-							<div className="grid grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2">
+							<div className="my-4 grid grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2">
 								{game.stores.length
 									? game.stores.map((store, index) => (
 											<StoreLink
