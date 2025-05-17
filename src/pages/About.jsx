@@ -25,11 +25,11 @@ export default function About() {
 								nim="00000043324"
 								username="cmmhero"
 							/>
-							<Profile
+							{/* <Profile
 								name="Dylan Heboth Rajagukguk"
 								nim="00000082599"
 								username="DillJest"
-							/>
+							/> */}
 						</div>
 					</div>
 					<div>
