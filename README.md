@@ -2,8 +2,6 @@
 
 A modern, responsive game discovery platform built with React and the RAWG API.
 
-## 📋 Description
-
 H320 Gamelist is a project designed to help gamers discover their next favorite title. Leveraging the comprehensive RAWG Video Games Database API, it offers a seamless interface for browsing popular, top-rated, and newly released games.  The application focuses on a clean user experience with robust filtering, search capabilities, and detailed game information, all wrapped in a responsive, accessible design supporting both light and dark modes.
 
 ## ✨ Features
@@ -16,14 +14,6 @@ H320 Gamelist is a project designed to help gamers discover their next favorite 
 - **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices.
 - **Dark/Light Mode**: User-preference aware theming for comfortable viewing in any environment.
 - **Modern UI**: Built with Radix UI and Tailwind CSS for a polished, professional look.
-
-## 🛠️ Technical Depth
-
-- **Infinite Scrolling**: Implemented using the Intersection Observer API for efficient, seamless data loading.
-- **Dynamic Querying**: constructing complex API queries based on active filters (genre, platform, store).
-- **Custom Pagination**: Hook-based state management to handle page increments and dataappending.
-- **Skeleton Loading**: Optimized user perception during asynchronous data fetching.
-- **Responsive Navigation**: Adaptive layouts and navigation components for all screen sizes.
 
 ## 🚀 Tech Stack
 
