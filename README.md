@@ -1,73 +1,39 @@
 # H320 Gamelist
 
-A modern, responsive game discovery platform built with React and the RAWG API.
+A fast front end for browsing video games, powered by the RAWG database
+API. Curated rows on the home page, an infinite-scrolling browse view
+with real filters, palette search, and rich detail pages.
 
-H320 Gamelist is a project designed to help gamers discover their next favorite title. Leveraging the comprehensive RAWG Video Games Database API, it offers a seamless interface for browsing popular, top-rated, and newly released games.  The application focuses on a clean user experience with robust filtering, search capabilities, and detailed game information, all wrapped in a responsive, accessible design supporting both light and dark modes.
+React 18, Vite 5, Tailwind, Radix and shadcn-style primitives, React
+Router, cmdk for the command palette.
 
-## ✨ Features
+## Run it
 
-- **Dynamic Game Discovery**: Browse curated lists of popular, top-rated, and new games.
-- **Infinite Scroll**: Seamlessly browse through thousands of games without interruption.
-- **Powerful Search**: Instantly find games by title with a responsive search bar.
-- **Advanced Filtering**: Filter games by genre, platform, and other criteria to find exactly what you're looking for.
-- **Detailed Game Views**: Access comprehensive game details including descriptions, ratings, platforms, and store links.
-- **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices.
-- **Dark/Light Mode**: User-preference aware theming for comfortable viewing in any environment.
-- **Modern UI**: Built with Radix UI and Tailwind CSS for a polished, professional look.
-
-## 🚀 Tech Stack
-
-- **Frontend Framework**: [React](https://react.dev/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/) & [Shadcn UI](https://ui.shadcn.com/) patterns
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Routing**: [React Router DOM](https://reactrouter.com/)
-- **Data Source**: [RAWG API](https://rawg.io/apidocs)
-
-## 📂 Structure
-
-```
-src/
-├── components/         # Reusable UI components (GameCard, NavBar, etc.)
-│   ├── ui/             # Primitive UI elements (buttons, inputs)
-├── pages/              # Route components (Home, Browse, GameDetail)
-├── assets/             # Static assets
-├── lib/                # Utility functions
-├── App.jsx             # Main application layout
-└── main.jsx            # Entry point
+```bash
+npm install
+npm run dev
 ```
 
-## ⚡ How to Run
+You need a RAWG key in `.env` as `VITE_RAWG_API_KEY` (free at
+rawg.io/apidocs). `npm run build` bundles, `npm run preview` serves it,
+`npm run lint` lints.
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/CMMhero/gamelist.git
-    cd gamelist
-    ```
+## What it does
 
-2.  **Install dependencies**
-    ```bash
-    npm install
-    # or
-    yarn install
-    # or
-    bun install
-    ```
+- Home with a hero plus curated rows by popularity, score, and release
+  date. View All links jump into browse with that ordering applied.
+- Browse view with infinite scroll, multi-select genre, platform, and
+  store filters, ordering options, and three saved layouts (grid, cards,
+  list) that persist.
+- Global search as a command palette (Ctrl or Cmd+S), debounced, with
+  thumbnail results.
+- Detail pages with backdrop art, ratings, platforms, stores, a
+  screenshot gallery with lightbox, and store links.
+- Skeleton states everywhere data loads, dark and light themes, and a
+  mobile nav sheet.
 
-3.  **Configure Environment**
-    Create a `.env` file in the root directory and add your RAWG API key:
-    ```env
-    VITE_RAWG_API_KEY=your_api_key_here
-    ```
-    > You can obtain an API key from [RAWG.io](https://rawg.io/apidocs).
+## Notes
 
-4.  **Start the development server**
-    ```bash
-    npm run dev
-    ```
-
-5.  **Build for production**
-    ```bash
-    npm run build
-    ```
+There is no data layer here. Plain fetch plus hooks per view, which is
+plenty for a read-only catalog. Game pages fire four RAWG requests in
+parallel. Ignore the unused Gamespot key in `.env` if you see one.
